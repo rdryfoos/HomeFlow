@@ -117,7 +117,7 @@ HomesFlow is a responsive iOS app (iPhone and iPad) that empowers primary homeow
 
 ## Narrative
 
-Imagine Diane, a homeowner who spends most of her time in Florida, but owns a cherished oceanfront home in Maine. She worries each spring about getting the lawn tended, propane checked, and everything ready for summer visits. Previously, Diane painstakingly emailed procedures, WiFi passwords, and lawn schedules to family and caretakers—never sure if vital steps were missed or what had already been done. With HomesFlow, Diane sets up her second home's profile in minutes, delegating tasks and sharing info with her adult children, trusted handyman, and future guests. Each person sees only what they need, gets notified of tasks, and can update status, providing Jane peace of mind from anywhere. No more confusion—just clarity, control, and time saved for everyone.
+Imagine Diane, a homeowner who spends most of her time in Florida, but owns a cherished oceanfront home in Maine. She worries each spring about getting the lawn tended, propane checked, and everything ready for summer visits. Previously, Diane painstakingly emailed procedures, WiFi passwords, and lawn schedules to family and caretakers—never sure if vital steps were missed or what had already been done. With HomesFlow, Diane sets up her second home's profile in minutes, delegating tasks and sharing info with her adult children, trusted handyman, and future guests. Each person sees only what they need, gets notified of tasks, and can update status, providing Diane peace of mind from anywhere. No more confusion—just clarity, control, and time saved for everyone.
 
 ---
 
