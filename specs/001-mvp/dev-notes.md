@@ -257,6 +257,8 @@ Pre-release sign-off: [`release-checklist.md`](./release-checklist.md) per `trac
 
 Target flow: feature branch → open PR → `craft-gate` + Sonar green on PR → merge → `main` protected without bypass.
 
+**Known follow-on (not Phase E scope):** Sonar quality gate “Coverage on New Code ≥ 80%” is unmet because CI does not yet publish Swift test coverage into Sonar — see Platform readiness row **Sonar coverage wiring**.
+
 ---
 
 ## Regenerating Xcode project
