@@ -228,6 +228,7 @@ T076 (2026-07-03): `StructuralActionPolicy` implements AC-SYNC-07 — structural
 | **Craft Phase C** | Tighten SwiftLint incrementally (re-enable size/complexity rules as files are split); optional `unused_parameter` as warning-as-error | **Next** (opportunistic) |
 | **Craft Phase D** | SonarCloud suppressions (UI) + GitHub branch protection on `main` | **Done** (2026-07-08) |
 | **Craft Phase E** | PR-only merge + PR template + CI-based Sonar scan | **In progress** — T088–T090 done; T087 via `finish-phase-e.sh` after merge |
+| **Sonar coverage wiring** | Publish XCTest/xccov (or lcov) from the `ios` CI job into Sonar so “Coverage on New Code” is real | **Not started** — QG still requires ≥80% on new code; CI scan does not upload coverage yet, so `SonarCloud Code Analysis` fails with 0.0% (scan job itself can be green). Until wired: relax that QG condition, or accept the red check as known craft debt — not a Gate 2 / product failure |
 | Observability | Sentry crash telemetry (DSN-gated via `SENTRY_DSN`) | **Done** — optional until TestFlight |
 | Regression evals | Scripted sync/conflict scenario datasets in CI (SC-04 matrix) | **Done** — `SyncConflictMatrixTests` |
 
@@ -255,6 +256,8 @@ Pre-release sign-off: [`release-checklist.md`](./release-checklist.md) per `trac
 4. **T087** — PR-only merge + `enforce_admins` — run after merge: `bash scripts/finish-phase-e.sh`
 
 Target flow: feature branch → open PR → `craft-gate` + Sonar green on PR → merge → `main` protected without bypass.
+
+**Known follow-on (not Phase E scope):** Sonar quality gate “Coverage on New Code ≥ 80%” is unmet because CI does not yet publish Swift test coverage into Sonar — see Platform readiness row **Sonar coverage wiring**.
 
 ---
 
