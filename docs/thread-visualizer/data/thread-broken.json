@@ -1,0 +1,2186 @@
+{
+  "generatedAt": "2026-08-04T01:35:05Z",
+  "commit": "f1b2660",
+  "source": {
+    "gate2": "scripts/check-traceability.sh",
+    "prd": "HomesFlow.prd.md",
+    "principle": "Projection only \u2014 not a second registry"
+  },
+  "totals": {
+    "registryIds": 79,
+    "acs": 50,
+    "acsWithTests": 44,
+    "idsWithCovers": 69,
+    "acsVerified": 44,
+    "acsTrackedDebt": 5,
+    "acsGap": 1,
+    "gate2Passed": true
+  },
+  "defaultDescentId": "AC-USER-04",
+  "demoBreakId": "AC-USER-04",
+  "threads": [
+    {
+      "id": "AC-A11Y-01",
+      "requirement": {
+        "id": "AC-A11Y-01",
+        "text": "Given the user has increased text size via iOS Settings (Dynamic Type / Accessibility sizes), when they view dashboard, home detail, or procedure screens, then primary text and controls scale, layouts reflow without clipping essential actions, and primary reading content does not require horizontal scrolling.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T066a"
+        ],
+        "pendingTasks": [
+          "T069a"
+        ]
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/UI/AccessibilityBaseline.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Home/HomeHeroCard.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_A11Y_01_hero_height_grows_with_text_size",
+            "path": "ios/HomesFlowTests/AccessibilityBaselineTests.swift"
+          },
+          {
+            "name": "test_AC_A11Y_01_scale_factor_is_monotonic_across_sizes",
+            "path": "ios/HomesFlowTests/AccessibilityBaselineTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-A11Y-02",
+      "requirement": {
+        "id": "AC-A11Y-02",
+        "text": "Given VoiceOver is enabled, when the user navigates home section tabs (horizontal on iPhone, vertical on iPad), then each tab exposes a combined accessibility label (section name + role), selected state is announced, and interactive controls have meaningful hints where non-obvious.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T021b",
+          "T066a"
+        ],
+        "pendingTasks": [
+          "T069a"
+        ]
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/UI/AccessibilityBaseline.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/HomeDetail/HomeDetailView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_A11Y_02_every_section_tab_has_meaningful_voiceover_text",
+            "path": "ios/HomesFlowTests/AccessibilityBaselineTests.swift"
+          },
+          {
+            "name": "test_AC_A11Y_02_step_status_values_cover_all_statuses",
+            "path": "ios/HomesFlowTests/AccessibilityBaselineTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-A11Y-03",
+      "requirement": {
+        "id": "AC-A11Y-03",
+        "text": "Given Reduce Motion is enabled in iOS Settings, when the user navigates between sections or primary screens, then non-essential motion animations are omitted or reduced per system preference.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T066a"
+        ],
+        "pendingTasks": [
+          "T069a"
+        ]
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/UI/AccessibilityBaseline.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/HomeDetail/HomeDetailView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_A11Y_03_reduce_motion_disables_animation",
+            "path": "ios/HomesFlowTests/AccessibilityBaselineTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-GUEST-01",
+      "requirement": {
+        "id": "AC-GUEST-01",
+        "text": "Given a Guest signs in to a home, when they view info, then only fields marked for Guest visibility are shown and edit controls are disabled.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T057",
+          "T062",
+          "T065"
+        ],
+        "pendingTasks": [
+          "T064"
+        ]
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Documents/DocumentDTO.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Documents/DocumentRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Providers/ServiceProviderRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Documents/FilesView.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/HomeDetail/HomeDetailView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_GUEST_01_guest_fields_only",
+            "path": "ios/HomesFlowTests/GuestTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-GUEST-02",
+      "requirement": {
+        "id": "AC-GUEST-02",
+        "text": "Given a Guest tries to access a restricted procedure or document via deep link, when the app evaluates permissions, then access is denied and a clear message is shown explaining limitations.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T005",
+          "T010",
+          "T058",
+          "T063a"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Models/EntityAccessState.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Permissions/PermissionService.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Guest/GuestAccessDeniedView.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Procedures/ProceduresView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_GUEST_02_restricted_deep_link_denied",
+            "path": "ios/HomesFlowTests/GuestTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-GUEST-03",
+      "requirement": {
+        "id": "AC-GUEST-03",
+        "text": "Given the Guest receives updated guest-visibility content while offline and another actor changes visibility before sync, when devices sync, then the most recent timestamp determines visibility and Guests see the latest allowed content.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T059",
+          "T063b"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Procedures/ProcedureRepository.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_GUEST_03_offline_visibility_sync",
+            "path": "ios/HomesFlowTests/GuestTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-GUEST-04",
+      "requirement": {
+        "id": "AC-GUEST-04",
+        "text": "Given a Guest opens a guest procedure, when they view it, then they can see step descriptions and read-only status but cannot change step statuses.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T047c",
+          "T060",
+          "T063c"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Features/Procedures/ProcedureDetailView.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Procedures/ProceduresView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_GUEST_04_guest_procedure_read_only",
+            "path": "ios/HomesFlowTests/GuestTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-GUEST-05",
+      "requirement": {
+        "id": "AC-GUEST-05",
+        "text": "Given a Guest attempts to mark a guest step complete, when they submit, then the app rejects the change and logs the attempted unauthorized action for audit.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T061",
+          "T063"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Procedures/ProcedureRepository.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_GUEST_05_guest_cannot_update_step",
+            "path": "ios/HomesFlowTests/PermissionServiceTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-HOME-01",
+      "requirement": {
+        "id": "AC-HOME-01",
+        "text": "Given an authenticated Owner on a connected device, when they submit valid home details and photos, then the home is created and visible in their dashboard with correct data.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T018",
+          "T019"
+        ],
+        "pendingTasks": [
+          "T022"
+        ]
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Home/HomeRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Storage/HomePhotoService.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/HomeSetup/HomeSetupView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_HOME_01_valid_home_passes_validation",
+            "path": "ios/HomesFlowTests/HomeValidatorTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-HOME-02",
+      "requirement": {
+        "id": "AC-HOME-02",
+        "text": "Given an Owner submits incomplete/invalid home details, when they attempt to save, then validation errors are shown and the home is not created.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T018",
+          "T023"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Home/HomeDTO.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Home/HomeRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/HomeSetup/HomeSetupView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_HOME_02_empty_address_rejected",
+            "path": "ios/HomesFlowTests/HomeValidatorTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_02_empty_name_rejected",
+            "path": "ios/HomesFlowTests/HomeValidatorTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-HOME-03",
+      "requirement": {
+        "id": "AC-HOME-03",
+        "text": "Given an Owner edits home details while offline and another device edits the same home before sync, when both devices reconnect, then the version with the most recent timestamp is applied and a conflict log entry is created for audit.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T020",
+          "T024"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Home/HomeConflictResolver.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Home/HomeRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Sync/OutboxSyncPolicy.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/HomeSetup/HomeSetupView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_HOME_03_local_newer_keeps_pending_local",
+            "path": "ios/HomesFlowTests/HomeConflictResolverTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_03_older_pending_edit_does_not_push_over_newer_server",
+            "path": "ios/HomesFlowTests/SyncConflictMatrixTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_03_server_newer_overwrites_pending_local",
+            "path": "ios/HomesFlowTests/HomeConflictResolverTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_03_synced_home_applies_server",
+            "path": "ios/HomesFlowTests/HomeConflictResolverTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-HOME-04",
+      "requirement": {
+        "id": "AC-HOME-04",
+        "text": "Given a Manager user opens the service provider directory, when they search and select a provider, then they can edit contact details and changes are saved and propagated to permitted users.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T051",
+          "T052",
+          "T055"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Providers/ProviderConflictResolver.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Providers/ServiceProviderDTO.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Providers/ServiceProviderFieldMerge.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Providers/ServiceProviderRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Providers/ContactsView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_HOME_04_local_newer_edit_is_kept",
+            "path": "ios/HomesFlowTests/ProviderTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_04_provider_edit_propagates",
+            "path": "ios/HomesFlowTests/ProviderTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-HOME-05",
+      "requirement": {
+        "id": "AC-HOME-05",
+        "text": "Given a Manager user edits a provider entry that an Owner later deletes on another device before sync, when both devices sync, then the most recent timestamp between edit and delete determines final state; if delete is most recent the provider is removed and the editor receives a notification that their edit was removed due to delete.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T037",
+          "T053",
+          "T056"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Providers/ProviderConflictResolver.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Providers/ServiceProviderRepository.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_HOME_05_delete_wins_over_edit",
+            "path": "ios/HomesFlowTests/ProviderTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_05_local_only_insert_survives_pull",
+            "path": "ios/HomesFlowTests/ProviderTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_05_synced_row_removed_silently",
+            "path": "ios/HomesFlowTests/ProviderTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-HOME-06",
+      "requirement": {
+        "id": "AC-HOME-06",
+        "text": "Given an Owner or Manager user uploads a home photo, when the photo is saved to Storage, then the client uploads a display-optimized JPEG bounded to a maximum pixel dimension (not full camera resolution).",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T019a",
+          "T024a"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Documents/DocumentStorageService.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Storage/HomePhotoCache.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Storage/HomePhotoService.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_HOME_06_invalid_image_data_rejected",
+            "path": "ios/HomesFlowTests/HomePhotoTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_06_small_image_not_upscaled",
+            "path": "ios/HomesFlowTests/HomePhotoTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_06_upload_resizes_before_storage",
+            "path": "ios/HomesFlowTests/HomePhotoTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-HOME-07",
+      "requirement": {
+        "id": "AC-HOME-07",
+        "text": "Given a user has previously loaded a home photo on this device, when they view the dashboard or home detail again, then the hero photo renders from local cache without re-downloading from Storage.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T019a",
+          "T024b"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Storage/HomePhotoCache.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Storage/HomePhotoService.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Home/HomeHeroCard.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_HOME_07_hero_renders_from_local_cache",
+            "path": "ios/HomesFlowTests/HomePhotoTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_07_removed_photo_no_longer_cached",
+            "path": "ios/HomesFlowTests/HomePhotoTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-HOME-08",
+      "requirement": {
+        "id": "AC-HOME-08",
+        "text": "Given a home record has not yet synced to the server, when an Owner or Manager user attempts to upload a photo, then the upload is blocked and the user sees actionable guidance to sync first (e.g., pull to refresh while online).",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T019",
+          "T024c"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Home/HomePhotoSyncGate.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Home/HomeRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Dashboard/DashboardView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_HOME_08_blocked_errors_carry_actionable_guidance",
+            "path": "ios/HomesFlowTests/HomePhotoTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_08_connected_upload_runs_sync_then_passes_when_synced",
+            "path": "ios/HomesFlowTests/HomePhotoTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_08_offline_edit_without_photo_defers_sync",
+            "path": "ios/HomesFlowTests/HomePhotoTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_08_photo_blocked_until_home_synced",
+            "path": "ios/HomesFlowTests/HomePhotoTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-HOME-09",
+      "requirement": {
+        "id": "AC-HOME-09",
+        "text": "Given a user views home detail on iPad (regular horizontal size class), when any section is selected, then the trailing area shows section content only \u2014 no full-bleed home hero and no horizontal section tab bar at the home level (nested section list | detail splits are allowed inside the trailing area).",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T021a"
+        ],
+        "pendingTasks": [
+          "T024d"
+        ]
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Features/HomeDetail/HomeDetailView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": []
+      },
+      "gateStatus": "implemented-test-pending",
+      "status": "tracked-debt"
+    },
+    {
+      "id": "AC-HOME-10",
+      "requirement": {
+        "id": "AC-HOME-10",
+        "text": "Given a user opens a home on iPad, when home detail is shown, then the leading column displays a compact home hero (photo, name, address) and vertically stacked tappable section entries with icon and label for Procedures, Contacts, Files, and People; the trailing area shows the selected section using a three-panel layout (sidebar already visible + section list + section detail) for **all four** sections.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T021a",
+          "T021c"
+        ],
+        "pendingTasks": [
+          "T024e"
+        ]
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Members/PeopleSelection.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/HomeDetail/HomeDetailView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": []
+      },
+      "gateStatus": "implemented-test-pending",
+      "status": "tracked-debt"
+    },
+    {
+      "id": "AC-HOME-11",
+      "requirement": {
+        "id": "AC-HOME-11",
+        "text": "Given a user views home detail on any device, when section navigation is shown, then section labels read Procedures, Contacts, Files, and People (Files implements the document library).",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T021b",
+          "T065"
+        ],
+        "pendingTasks": [
+          "T024f"
+        ]
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Features/Documents/FilesView.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/HomeDetail/HomeDetailView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": []
+      },
+      "gateStatus": "implemented-test-pending",
+      "status": "tracked-debt"
+    },
+    {
+      "id": "AC-HOME-12",
+      "requirement": {
+        "id": "AC-HOME-12",
+        "text": "Given a user with permission to add content views a home section list (Contacts, Files, People), when the section is shown, then a single add action appears as the toolbar primary action using a parallel construction across sections \u2014 a plus icon with an accessible label naming the action (e.g., Add contact, Add file, Invite member) that opens the section's create sheet; users without permission see no add action.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T065a",
+          "T065d"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/UI/SectionAddAction.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Documents/FilesView.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Members/MembersView.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Providers/ContactsView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_HOME_12_contacts_and_files_add_for_owner_and_manager",
+            "path": "ios/HomesFlowTests/FilesFeatureTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_12_guest_has_no_section_add_actions",
+            "path": "ios/HomesFlowTests/FilesFeatureTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_12_matches_repository_manage_flags",
+            "path": "ios/HomesFlowTests/FilesFeatureTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_12_people_add_owner_only",
+            "path": "ios/HomesFlowTests/FilesFeatureTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_12_section_add_actions_use_parallel_construction",
+            "path": "ios/HomesFlowTests/FilesFeatureTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-HOME-13",
+      "requirement": {
+        "id": "AC-HOME-13",
+        "text": "Given a user opens a file's detail, when they tap **Preview**, then the system Quick Look preview opens with zoom, scroll, and playback for supported types (images, PDFs, video, audio); detail shows a file summary, metadata, Preview action, share/download, and management actions below.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T065b",
+          "T065e",
+          "T065d"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Documents/DocumentPreviewSupport.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Documents/DocumentQuickLookPreview.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Documents/FilesView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_HOME_13_local_file_name_falls_back_to_id_and_extension",
+            "path": "ios/HomesFlowTests/FilesFeatureTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_13_local_file_name_uses_storage_path",
+            "path": "ios/HomesFlowTests/FilesFeatureTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_13_non_success_download_throws",
+            "path": "ios/HomesFlowTests/FilesFeatureTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_13_preview_icon_maps_by_extension",
+            "path": "ios/HomesFlowTests/FilesFeatureTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_13_streams_download_to_preview_directory",
+            "path": "ios/HomesFlowTests/FilesFeatureTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-HOME-14",
+      "requirement": {
+        "id": "AC-HOME-14",
+        "text": "Given an Owner or Manager adds a file, when they choose the file source, then camera capture, photo library, and file browser options are all offered, and content from any source uploads through the same metadata flow (title, category, visibility).",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T065c",
+          "T065d"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Documents/DocumentPreviewSupport.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Documents/FilesView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_HOME_14_apply_pick_fills_title_from_file_name",
+            "path": "ios/HomesFlowTests/FilesFeatureTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_14_apply_pick_preserves_existing_title",
+            "path": "ios/HomesFlowTests/FilesFeatureTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_14_camera_file_name_is_dated_jpeg",
+            "path": "ios/HomesFlowTests/FilesFeatureTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_14_includes_camera_when_available",
+            "path": "ios/HomesFlowTests/FilesFeatureTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_14_offers_library_and_file_browser_sources",
+            "path": "ios/HomesFlowTests/FilesFeatureTests.swift"
+          },
+          {
+            "name": "test_AC_HOME_14_upload_requires_valid_draft_and_file_data",
+            "path": "ios/HomesFlowTests/FilesFeatureTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-LOG-01",
+      "requirement": {
+        "id": "AC-LOG-01",
+        "text": "Given an Owner or Manager opens the Log Book for a home, when they write and save a household-scope entry, then the entry appears in the unified log with author and timestamp.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T078",
+          "T084"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/LogBook/LogBookEntryDTO.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/LogBook/LogBookRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/LogBook/CommunicationsLogView.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/LogBook/LogEntryEditorSheet.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_LOG_01_household_entry_appears_in_log",
+            "path": "ios/HomesFlowTests/LogBookTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-LOG-02",
+      "requirement": {
+        "id": "AC-LOG-02",
+        "text": "Given an Owner or Manager views a procedure, when they write a procedure-scope log entry, then the entry is attached to that procedure and also appears in the unified log.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T079",
+          "T084"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/LogBook/LogBookEntryDTO.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/LogBook/LogBookRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/LogBook/CommunicationsLogView.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/LogBook/LogEntryEditorSheet.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_LOG_02_procedure_entry_attached_and_in_log",
+            "path": "ios/HomesFlowTests/LogBookTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-LOG-03",
+      "requirement": {
+        "id": "AC-LOG-03",
+        "text": "Given a permitted user writes a log entry while offline, when the device reconnects, then the entry syncs append-only (no conflict resolution needed) and appears for other permitted users.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T080",
+          "T085"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/LogBook/LogBookEntryDTO.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/LogBook/LogBookRepository.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_LOG_03_offline_entry_syncs_append_only",
+            "path": "ios/HomesFlowTests/LogBookTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-LOG-04",
+      "requirement": {
+        "id": "AC-LOG-04",
+        "text": "Given a log entry has synced to the server, when the author attempts to edit it, then editing is allowed only within a **10-minute** grace window that starts at server receipt; after the window the entry is immutable.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T081",
+          "T085"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/LogBook/LogBookGraceWindowPolicy.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/LogBook/LogBookRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/LogBook/LogEntryEditorSheet.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_LOG_04_edit_only_within_grace_window",
+            "path": "ios/HomesFlowTests/LogBookTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-LOG-05",
+      "requirement": {
+        "id": "AC-LOG-05",
+        "text": "Given a permitted user opens the unified log view, when entries exist at both household and procedure scope, then entries are shown chronologically and can be filtered by scope.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T082",
+          "T086"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/LogBook/LogBookScopeFilter.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/LogBook/CommunicationsLogView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_LOG_05_unified_log_chronological_and_filterable",
+            "path": "ios/HomesFlowTests/LogBookTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-LOG-06",
+      "requirement": {
+        "id": "AC-LOG-06",
+        "text": "Given a Guest is signed in, when they attempt to view the Log Book directly or via deep link, then access is denied with a clear message.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T077",
+          "T083",
+          "T086"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/LogBook/LogBookRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/LogBook/CommunicationsLogView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_LOG_06_guest_denied_log_access",
+            "path": "ios/HomesFlowTests/LogBookTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-PROC-01",
+      "requirement": {
+        "id": "AC-PROC-01",
+        "text": "Given a Manager user views a procedure, when they mark a step Complete, then the step status updates for all users with appropriate visibility, the procedure's aggregate status and progress in the procedures list update immediately, and an activity log entry is created.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T042",
+          "T046",
+          "T048"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/ActivityLog/ActivityLogService.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Procedures/ProcedureRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Procedures/ProcedureDetailView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_PROC_01_complete_and_na_steps_mark_procedure_complete",
+            "path": "ios/HomesFlowTests/ProcedureTests.swift"
+          },
+          {
+            "name": "test_AC_PROC_01_completed_step_counts_toward_progress",
+            "path": "ios/HomesFlowTests/ProcedureTests.swift"
+          },
+          {
+            "name": "test_AC_PROC_01_final_step_completion_marks_procedure_complete",
+            "path": "ios/HomesFlowTests/ProcedureTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-PROC-02",
+      "requirement": {
+        "id": "AC-PROC-02",
+        "text": "Given a Manager user attempts to update a step beyond their permission (e.g., another home's owner-only procedure or step), when they submit the change, then the app blocks the update and shows a permission error.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T010",
+          "T044",
+          "T049"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Permissions/PermissionService.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Procedures/ProcedureRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Procedures/ProcedureDetailView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_PROC_02_guest_cannot_update_guest_visible_step",
+            "path": "ios/HomesFlowTests/PermissionServiceTests.swift"
+          },
+          {
+            "name": "test_AC_PROC_02_manager_cannot_update_owner_only_step",
+            "path": "ios/HomesFlowTests/PermissionServiceTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-PROC-03",
+      "requirement": {
+        "id": "AC-PROC-03",
+        "text": "Given a Manager user updates a step while offline and another user updates the same step before sync, when both devices reconnect, then the update with the most recent timestamp is persisted and the other user receives a notification about the overwritten change with reference to the activity log.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T037",
+          "T045",
+          "T050"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Procedures/ProcedureRepository.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_PROC_03_local_newer_keeps_pending_local",
+            "path": "ios/HomesFlowTests/ProcedureTests.swift"
+          },
+          {
+            "name": "test_AC_PROC_03_server_newer_overwrites_pending_local",
+            "path": "ios/HomesFlowTests/ProcedureTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-PROC-04",
+      "requirement": {
+        "id": "AC-PROC-04",
+        "text": "Given an Owner or Manager user long-presses a step on a procedure they can modify, when the context menu appears, then Edit, Delete, Move Up, and Move Down are available.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T047b",
+          "T050a"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Permissions/PermissionService.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Procedures/ProcedureRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Procedures/ProcedureDetailView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_PROC_04_manager_can_manage_step_structure",
+            "path": "ios/HomesFlowTests/StepStructureTests.swift"
+          },
+          {
+            "name": "test_AC_PROC_04_manager_cannot_manage_owner_only_procedure_steps",
+            "path": "ios/HomesFlowTests/StepStructureTests.swift"
+          },
+          {
+            "name": "test_AC_PROC_04_owner_can_manage_step_structure",
+            "path": "ios/HomesFlowTests/StepStructureTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-PROC-05",
+      "requirement": {
+        "id": "AC-PROC-05",
+        "text": "Given an Owner or Manager user taps Add on the Steps section, when they enter a title and save, then a new step is appended at the next sort order and appears for permitted users after sync.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T047b",
+          "T050a"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Procedures/ProcedureDTO.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Procedures/ProcedureRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Procedures/ProcedureDetailView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_PROC_05_move_down_swaps_with_next_step",
+            "path": "ios/HomesFlowTests/StepStructureTests.swift"
+          },
+          {
+            "name": "test_AC_PROC_05_move_is_noop_at_list_boundaries",
+            "path": "ios/HomesFlowTests/StepStructureTests.swift"
+          },
+          {
+            "name": "test_AC_PROC_05_move_up_swaps_with_previous_step",
+            "path": "ios/HomesFlowTests/StepStructureTests.swift"
+          },
+          {
+            "name": "test_AC_PROC_05_new_step_appends_at_end",
+            "path": "ios/HomesFlowTests/StepStructureTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-PROC-06",
+      "requirement": {
+        "id": "AC-PROC-06",
+        "text": "Given an Owner or Manager user creates, renames, reorders, or deletes a step, when the change syncs, then it persists for permitted users and an activity log entry is created.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T047a",
+          "T050b"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Procedures/ProcedureDTO.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Procedures/ProcedureRepository.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_PROC_06_structure_changes_produce_activity_summaries",
+            "path": "ios/HomesFlowTests/StepStructureTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-PROC-07",
+      "requirement": {
+        "id": "AC-PROC-07",
+        "text": "Given a Guest views a procedure, when they interact with steps, then step structure controls (long-press menu, Add step) are not available and step status remains read-only.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T047c",
+          "T050c"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Permissions/PermissionService.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Procedures/ProcedureRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Procedures/ProcedureDetailView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_PROC_07_guest_cannot_manage_step_structure",
+            "path": "ios/HomesFlowTests/StepStructureTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-PROC-08",
+      "requirement": {
+        "id": "AC-PROC-08",
+        "text": "Given a user views a step with an attached photo, when they tap **Photo attached**, then the photo opens in a modal preview; step rows show notes below the title, a tappable photo indicator when present, a pencil **Edit** control (when permitted) to the left of the status ellipsis menu, and the ellipsis menu remains rightmost.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T047d",
+          "T050d"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Procedures/StepRowPresentation.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Procedures/ProcedureDetailView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_PROC_08_photo_indicator_and_edit_controls",
+            "path": "ios/HomesFlowTests/StepRowPresentationTests.swift"
+          },
+          {
+            "name": "test_AC_PROC_08_tap_toggle_status_mapping",
+            "path": "ios/HomesFlowTests/StepRowPresentationTests.swift"
+          },
+          {
+            "name": "test_AC_PROC_08_terminal_statuses_strike_through",
+            "path": "ios/HomesFlowTests/StepRowPresentationTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-SYNC-01",
+      "requirement": {
+        "id": "AC-SYNC-01",
+        "text": "Given any user makes an update while offline, when the device reconnects, then the client syncs changes and the server resolves conflicts with most-recent timestamp wins; the client surfaces a notification when their offline change was overwritten.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T011",
+          "T020",
+          "T034",
+          "T037",
+          "T038",
+          "T045",
+          "T053",
+          "T072"
+        ],
+        "pendingTasks": [
+          "T027"
+        ]
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Procedures/ProcedureRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Providers/ProviderConflictResolver.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Providers/ServiceProviderFieldMerge.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Providers/ServiceProviderRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Sync/OutboxSyncPolicy.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Sync/OverwriteNotificationPolicy.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Sync/SyncEngine.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_SYNC_01_conflict_decision_is_idempotent",
+            "path": "ios/HomesFlowTests/SyncConflictMatrixTests.swift"
+          },
+          {
+            "name": "test_AC_SYNC_01_home_timestamp_wins_matrix",
+            "path": "ios/HomesFlowTests/SyncConflictMatrixTests.swift"
+          },
+          {
+            "name": "test_AC_SYNC_01_offline_overwrite_notifies_loser",
+            "path": "ios/HomesFlowTests/SyncConflictMatrixTests.swift"
+          },
+          {
+            "name": "test_AC_SYNC_01_provider_timestamp_wins_matrix",
+            "path": "ios/HomesFlowTests/SyncConflictMatrixTests.swift"
+          },
+          {
+            "name": "test_AC_SYNC_01_server_delete_matrix",
+            "path": "ios/HomesFlowTests/SyncConflictMatrixTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-SYNC-02",
+      "requirement": {
+        "id": "AC-SYNC-02",
+        "text": "Given two users modify different fields of the same entity while offline, when sync occurs, then both non-conflicting changes are merged and persisted, and an audit record notes the combined update. *(Deferred to post-MVP phase \u2014 see conflict model evolution note.)*",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T011",
+          "T072"
+        ],
+        "pendingTasks": [
+          "T035",
+          "T039"
+        ]
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Sync/SyncEngine.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": []
+      },
+      "gateStatus": "implemented-test-pending",
+      "status": "tracked-debt"
+    },
+    {
+      "id": "AC-SYNC-03",
+      "requirement": {
+        "id": "AC-SYNC-03",
+        "text": "Given a user attempts an action that depends on stale permissions cached offline, when syncing, then if the server denies the action, the client reverts the change and shows a permission error with guidance to retry.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T011",
+          "T036",
+          "T040",
+          "T072"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Sync/PermissionRevertPolicy.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Sync/SyncEngine.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_SYNC_03_permission_denied_revert_matrix",
+            "path": "ios/HomesFlowTests/SyncConflictMatrixTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-SYNC-04",
+      "requirement": {
+        "id": "AC-SYNC-04",
+        "text": "Given local changes or homes are pending sync to the server, when the user views the dashboard, then unsynced homes are visibly indicated and the user can pull to refresh to retry sync while online.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T015",
+          "T037",
+          "T040a"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Sync/SyncIndicatorPolicy.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Dashboard/DashboardView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_SYNC_04_pending_state_announced_to_voiceover",
+            "path": "ios/HomesFlowTests/SyncIndicatorTests.swift"
+          },
+          {
+            "name": "test_AC_SYNC_04_pending_sync_visible_on_dashboard",
+            "path": "ios/HomesFlowTests/SyncIndicatorTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-SYNC-05",
+      "requirement": {
+        "id": "AC-SYNC-05",
+        "text": "Given a step is marked Complete or N/A on one device, when a concurrent offline update from another device would change that step's status, then sync never silently regresses the Complete/N/A status; the conflicting update is surfaced instead of auto-applied.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T074",
+          "T074a"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Procedures/ProcedureRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Procedures/StepStatusConflictPolicy.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_SYNC_05_terminal_status_never_silently_regressed",
+            "path": "ios/HomesFlowTests/StepStatusConflictPolicyTests.swift"
+          },
+          {
+            "name": "test_AC_SYNC_05_terminal_step_protection_matrix",
+            "path": "ios/HomesFlowTests/SyncConflictMatrixTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-SYNC-06",
+      "requirement": {
+        "id": "AC-SYNC-06",
+        "text": "Given two devices make conflicting status changes to the same step or procedure while offline, when both sync, then the server resolves automatically (most-recent timestamp, subject to AC-SYNC-05 terminal-status protection) and the user whose change lost receives a notification with an activity-log reference and guidance to re-apply their change if still needed.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T075",
+          "T075a"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Procedures/ProcedureRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Procedures/StepStatusConflictPolicy.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_SYNC_06_losing_user_notified_with_reapply_guidance",
+            "path": "ios/HomesFlowTests/StepStatusConflictPolicyTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-SYNC-07",
+      "requirement": {
+        "id": "AC-SYNC-07",
+        "text": "Given a device is offline, when the user attempts a structural action (create/rename/reorder/delete steps, procedures, providers, or membership changes), then the action is disabled or blocked with clear messaging; structural actions require connectivity.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T076",
+          "T076a"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Members/MemberRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Procedures/ProcedureRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Providers/ServiceProviderRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Sync/StructuralActionPolicy.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Members/InviteMemberView.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Members/MembersView.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Procedures/ProcedureDetailView.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Providers/ContactsView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_SYNC_07_structural_actions_blocked_offline",
+            "path": "ios/HomesFlowTests/StructuralActionPolicyTests.swift"
+          },
+          {
+            "name": "test_AC_SYNC_07_structural_offline_gate_matrix",
+            "path": "ios/HomesFlowTests/SyncConflictMatrixTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-USER-01",
+      "requirement": {
+        "id": "AC-USER-01",
+        "text": "Given an Owner provides an email/phone and role and sends an invite, when the invite is accepted, then the invitee is added to the home with the assigned role and receives appropriate permissions immediately.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T025",
+          "T026",
+          "T030"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Members/InvitePolicy.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Members/MemberRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Members/InviteMemberView.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Members/MembersView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_USER_01_invite_accepted_grants_role",
+            "path": "ios/HomesFlowTests/MemberInviteTests.swift"
+          },
+          {
+            "name": "test_AC_USER_01_invite_email_validation_and_token_shape",
+            "path": "ios/HomesFlowTests/MemberInviteTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-USER-02",
+      "requirement": {
+        "id": "AC-USER-02",
+        "text": "Given an Owner re-sends or revokes an invite before acceptance, when they revoke, then the invite token becomes invalid and the invitee cannot join with that token.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T025",
+          "T031"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Members/InvitePolicy.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Members/MemberRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Members/PeopleSelection.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Members/MembersView.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Members/PendingInviteDetailView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_USER_02_revoked_token_invalid",
+            "path": "ios/HomesFlowTests/MemberInviteTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-USER-03",
+      "requirement": {
+        "id": "AC-USER-03",
+        "text": "Given an Owner invites a user while offline and the invite is processed on another device first, when sync occurs, then the most recent action (invite or revoke) by timestamp determines invite state and the Owner receives a notification of the resolved outcome.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [],
+        "pendingTasks": [
+          "T027",
+          "T033a"
+        ]
+      },
+      "implementation": {
+        "covered": false,
+        "modules": []
+      },
+      "proof": {
+        "tests": []
+      },
+      "gateStatus": "planned",
+      "status": "tracked-debt"
+    },
+    {
+      "id": "AC-USER-04",
+      "requirement": {
+        "id": "AC-USER-04",
+        "text": "Given an Owner assigns a Manager role to a user, when the user signs in, then they can create and modify procedures and service providers for that home.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T028",
+          "T032"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Members/MemberRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Members/MembersView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": []
+      },
+      "gateStatus": "gap",
+      "status": "GAP"
+    },
+    {
+      "id": "AC-USER-05",
+      "requirement": {
+        "id": "AC-USER-05",
+        "text": "Given an Owner assigns a Guest role to a user, when the guest signs in, then they see only guest-appropriate fields (e.g., WiFi, guest procedures) and cannot edit protected data.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T028",
+          "T033"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Members/MemberRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/HomeDetail/HomeDetailView.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Members/MembersView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_USER_05_guest_role_read_only",
+            "path": "ios/HomesFlowTests/GuestTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-USER-06",
+      "requirement": {
+        "id": "AC-USER-06",
+        "text": "Given concurrent role changes occur on multiple devices, when devices sync, then the change with the most recent timestamp wins and an owner-visible audit entry records the prior role.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T028",
+          "T029",
+          "T033b"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Members/InvitePolicy.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Core/Members/MemberRepository.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Members/MembersView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_USER_06_concurrent_role_change_audit",
+            "path": "ios/HomesFlowTests/MemberInviteTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    },
+    {
+      "id": "AC-USER-07",
+      "requirement": {
+        "id": "AC-USER-07",
+        "text": "Given an Owner creates an invite in MVP, when the invitee receives the shared invite link or token and signs in with the invited email, then they can accept the invite (paste token or open link) and join the home with the assigned role.",
+        "source": "HomesFlow.prd.md",
+        "doneTasks": [
+          "T025",
+          "T026",
+          "T033c"
+        ],
+        "pendingTasks": []
+      },
+      "implementation": {
+        "covered": true,
+        "modules": [
+          {
+            "path": "ios/HomesFlow/Core/Members/InvitePolicy.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Members/InviteMemberView.swift",
+            "kind": "implementation"
+          },
+          {
+            "path": "ios/HomesFlow/Features/Members/PendingInviteDetailView.swift",
+            "kind": "implementation"
+          }
+        ]
+      },
+      "proof": {
+        "tests": [
+          {
+            "name": "test_AC_USER_07_paste_token_accepts_invite",
+            "path": "ios/HomesFlowTests/MemberInviteTests.swift"
+          }
+        ]
+      },
+      "gateStatus": "verified",
+      "status": "verified"
+    }
+  ],
+  "demo": {
+    "broken": true,
+    "breakId": "AC-USER-04",
+    "note": "Seeded demo break: proof tests for this AC were removed in the projection only. Regenerated from live Gate 2 data + surgical strip."
+  }
+}

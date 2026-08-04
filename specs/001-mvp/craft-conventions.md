@@ -91,6 +91,7 @@ Break-glass (emergency only): temporarily turn off “Do not allow bypassing…�
 |------|---------|--------|
 | **Gate 0** | `xcodebuild build` + `xcodebuild test` (`HomesFlowTests`) | macOS |
 | **Gate 2** | `bash scripts/check-traceability.sh` | Linux or macOS |
+| **Thread visualizer** | `bash scripts/thread-visualizer-refresh.sh` → `docs/thread-visualizer/` | Linux or macOS |
 | **Shell** | `shellcheck scripts/*.sh` | Linux or macOS |
 | **SwiftLint** | `swiftlint lint --config ios/.swiftlint.yml` | macOS |
 | **Sonar** | CI job `sonar` in `.github/workflows/ci.yml` (`SONAR_TOKEN`) + quality gate on **new code** | Ubuntu + SonarCloud |
