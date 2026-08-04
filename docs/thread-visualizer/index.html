@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HomesFlow — Golden Thread</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="visualizer.css" />
+</head>
+<body>
+  <div class="atmosphere" aria-hidden="true"></div>
+
+  <header class="top">
+    <p class="brand">HomesFlow</p>
+    <h1>Golden Thread</h1>
+    <p class="lede">
+      One requirement. Implementation. Proof. The same chain Gate&nbsp;2 enforces —
+      made visible. Projection only; not a second registry.
+    </p>
+  </header>
+
+  <section class="totals" id="totals" aria-live="polite"></section>
+
+  <section class="controls">
+    <label class="field">
+      <span>Requirement</span>
+      <select id="threadSelect"></select>
+    </label>
+    <div class="break-toggle" role="group" aria-label="Thread state">
+      <button type="button" id="btnIntact" class="chip is-active">Intact</button>
+      <button type="button" id="btnBreak" class="chip chip-danger">Break the proof</button>
+    </div>
+  </section>
+
+  <main class="descent" id="descent" aria-live="polite"></main>
+
+  <details class="scale">
+    <summary>And it scales — all acceptance criteria</summary>
+    <div id="scaleList" class="scale-list"></div>
+  </details>
+
+  <footer class="foot">
+    <p>
+      Regenerated from Gate&nbsp;2 via
+      <code>bash scripts/thread-visualizer-refresh.sh</code>.
+      Totals must match <code>scripts/check-traceability.sh</code>.
+    </p>
+    <p id="meta" class="meta"></p>
+  </footer>
+
+  <script src="visualizer.js"></script>
+</body>
+</html>

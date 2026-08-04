@@ -31,6 +31,8 @@ How one thread runs, using a real example:
 
 No orphan code, no silent scope, no untracked debt: an acceptance criterion is either verified by a test that names it, or it appears in an unchecked task; anything else fails `scripts/check-traceability.sh`. The [coverage matrix](specs/001-mvp/coverage.md) is a generated portfolio snapshot (regenerate with `--matrix` before hiring or release pushes); CI enforces integrity, not file freshness. Mechanics are documented in [traceability.md](traceability.md).
 
+**Show the thread:** the [Thread Visualizer](docs/thread-visualizer/) is a read-only descent view over the same Gate&nbsp;2 data (one requirement → `@covers` → `test_AC_*`, plus a seeded break state). Regenerate with `bash scripts/thread-visualizer-refresh.sh`.
+
 ## Core documents
 
 | Document | Role |
