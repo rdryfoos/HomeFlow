@@ -1,0 +1,61 @@
+[PRIVATE — Rik only. Do not paste into the newbie chat or commit to the public repo.]
+
+Trial priorities: (1) Spec Kit discipline (2) Golden Thread integrity (3) Craft/PR hygiene
+
+## What the newbie sees vs what you hold back
+- They get standards + assignment shape (con.txt).
+- They do **not** get this scorecard, weights, auto-fails, or that you will break a test after merge.
+
+## Setup (you do this before they start)
+1. Merge a tiny PRD amendment adding exactly one new atomic AC (see micro-AC candidates doc).
+2. Do **not** pre-create tasks/tests for it.
+3. Hand them: newbie con.txt + the AC ID + “take it through Spec Kit → Gate 2 → PR.”
+4. Optional stretch (after pass): glance at thread visualizer; not part of scoring.
+
+## Scoring (100)
+
+### A. Spec Kit discipline — 45 pts
+| Check | Pts | Notes |
+|-------|----:|-------|
+| Started from PRD ID; did not mint a new requirement ID in `specs/` | 10 | Auto-fail if they invent a parallel ID |
+| Updated `spec.md` / `plan.md` / `tasks.md` appropriately for the slice | 12 | Skip-to-code with no task = 0 for this row |
+| Every new/changed task has `Traces:` including the AC | 10 | |
+| Did not invent extra product behavior beyond the AC | 8 | “While I’m here” features = heavy deduct |
+| Asked or stopped if something was ambiguous (vs guessing) | 5 | |
+
+### B. Golden Thread integrity — 35 pts
+| Check | Pts | Notes |
+|-------|----:|-------|
+| `bash scripts/check-traceability.sh` PASS on the PR | 12 | |
+| Production module(s) carry `@covers <AC-ID>` | 8 | |
+| Named `test_AC_*` encodes the ID and asserts the AC | 10 | |
+| No silent gap; no orphan `@covers` / orphan test IDs | 5 | |
+
+**Post-merge adversarial drill (ungraded until run; then pass/fail):**  
+Delete or rename their new `test_AC_*` locally (or on a throwaway branch). They must: (1) show Gate 2 FAIL mentioning the gap, (2) restore correctly without inventing scope.  
+Fail drill = cap total score at 70 even if A–C were perfect.
+
+### C. Craft / PR hygiene — 20 pts
+| Check | Pts | Notes |
+|-------|----:|-------|
+| Feature branch + PR (not direct `main`) | 6 | |
+| PR template filled (task IDs, Traces, Gate 2 evidence) | 6 | |
+| CI `craft-gate` green (or clear fix-forward if flaky infra) | 5 | |
+| Diff stays scoped; no drive-by refactors | 3 | |
+
+## Auto-fail (any one)
+- Ships product behavior with no PRD authorization
+- Treats story map / constitution as product requirements
+- Gate 2 red and they declare done anyway
+- Pushes straight to `main` after being told PR-only
+
+## Grade bands
+- **90–100** Hire-confidence for workflow  
+- **75–89** Solid; coach one weak layer  
+- **60–74** Process gaps; retry with a second micro-AC  
+- **<60** Not ready for unsupervised Spec Kit work  
+
+## Facilitator notes
+- Prefer grading artifacts + Gate 2 over diff-vs-your-old-PRs.
+- Sonar “Coverage on New Code” red is known craft debt (`dev-notes`); do not fail them on that alone if `craft-gate` is green.
+- If they only add a test for behavior already in code: that is a **valid** thin slice for this trial — Spec Kit + thread are the exam.
