@@ -16,6 +16,20 @@
         "speckit-agent-context-update"
       ],
       "installed_at": "2026-06-26T14:27:06.775090+00:00"
+    },
+    "clewseau-gate": {
+      "version": "0.2.0",
+      "source": "local",
+      "manifest_hash": "sha256:3dc44c058e1bcfd5fb3f8d99ca3fc78ced48eb2a8dcb80a3d9fe1bb660c2fba4",
+      "enabled": true,
+      "priority": 10,
+      "registered_commands": {
+        "claude": [
+          "speckit.clewseau-gate.check"
+        ]
+      },
+      "registered_skills": [],
+      "installed_at": "2026-08-06T18:45:20.408692+00:00"
     }
   }
 }

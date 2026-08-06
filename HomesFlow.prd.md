@@ -42,6 +42,10 @@ HomesFlow is a responsive iOS app (iPhone and iPad) that empowers primary homeow
 * **US-GUEST-01** — As a Guest, I want to see only guest-appropriate information (like WiFi codes/rules), so my access is controlled and simple.
 * **US-GUEST-02** — As a Guest, I want to view house procedures for guests, so I know what is expected during my stay.
 
+**Clewseau cold-agent trial (temporary probe — tombstone after trial)**
+
+* **US-CLEW-01** — As a developer validating Clewseau, I want a tiny pure display-name normalizer with durable IDs, so a stock Spec Kit + Clewseau agent can take one AC from registry through proof without UI or sync scope.
+
 ---
 
 ## Functional Requirements
@@ -61,6 +65,7 @@ HomesFlow is a responsive iOS app (iPhone and iPad) that empowers primary homeow
 * **FR-NOTIF-01** (Priority: Medium) — Optional push notifications for changed statuses and new assignments.
 * **FR-LOG-01** (Priority: Medium) — History log of changes for accountability.
 * **FR-LOG-02** (Priority: Medium) — User-authored **Log Book**: Owners and Managers write free-form log entries at household scope or attached to a procedure, viewable in a unified chronological log alongside activity history. Entries are append-only offline, editable only within a 10-minute grace window that starts at server receipt. Guests have no Log Book access.
+* **FR-CLEW-01** (Priority: Low) — **Clewseau trial.** Pure helper `HomeDisplayName.normalized(_:)` collapses whitespace in home display names (no UI, no sync). Temporary probe ID — tombstone after the cold-agent trial.
 
 ---
 
@@ -286,6 +291,12 @@ Imagine Diane, a homeowner who spends most of her time in Florida, but owns a ch
 * **AC-A11Y-02** — Given VoiceOver is enabled, when the user navigates home section tabs (horizontal on iPhone, vertical on iPad), then each tab exposes a combined accessibility label (section name + role), selected state is announced, and interactive controls have meaningful hints where non-obvious.
 * **AC-A11Y-03** — Given Reduce Motion is enabled in iOS Settings, when the user navigates between sections or primary screens, then non-essential motion animations are omitted or reduced per system preference.
 
+### US-CLEW-01 / FR-CLEW-01 — Clewseau cold-agent trial (temporary)
+
+> Temporary probe for stock Spec Kit + Clewseau cold-agent validation. Implement as a pure Swift helper + unit test only. Tombstone these IDs after the trial; do not reuse numbers.
+
+* **AC-CLEW-01** — Given a home display name string, when `HomeDisplayName.normalized(_:)` runs, then leading and trailing whitespace are stripped and any internal run of whitespace collapses to a single space.
+
 ---
 
 ## ID Registry (authoritative)
@@ -299,6 +310,7 @@ Imagine Diane, a homeowner who spends most of her time in Florida, but owns a ch
 | US-EDIT-02 | User Story | Manager user manages providers |
 | US-GUEST-01 | User Story | Guest sees limited info |
 | US-GUEST-02 | User Story | Guest views guest procedures |
+| US-CLEW-01 | User Story | Clewseau cold-agent trial (temporary) |
 | FR-USER-01 | FR | Multi-role access per home |
 | FR-AUTH-01 | FR | OAuth / Apple sign-in |
 | FR-USER-02 | FR | Owner user management |
@@ -314,6 +326,7 @@ Imagine Diane, a homeowner who spends most of her time in Florida, but owns a ch
 | FR-NOTIF-01 | FR | Push notifications |
 | FR-LOG-01 | FR | Activity history log |
 | FR-LOG-02 | FR | User-authored Log Book |
+| FR-CLEW-01 | FR | Clewseau trial: HomeDisplayName.normalized (temporary) |
 | NFR-OFFL-01 | NFR | Offline sync core requirement |
 | NFR-SYNC-01 | NFR | Sync under 1 second |
 | NFR-PERF-01 | NFR | Screen load under 2s; streaming file preview; throttled prefetch |
@@ -328,3 +341,4 @@ Imagine Diane, a homeowner who spends most of her time in Florida, but owns a ch
 | AC-SYNC-01 … AC-SYNC-07 | AC | Offline sync scenarios (05–07: data-type-aware model) |
 | AC-LOG-01 … AC-LOG-06 | AC | Log Book scenarios |
 | AC-A11Y-01 … AC-A11Y-03 | AC | Accessibility scenarios |
+| AC-CLEW-01 | AC | Clewseau trial: display-name normalize (temporary) |

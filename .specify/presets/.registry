@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "presets": {
+    "clewseau": {
+      "version": "0.1.0",
+      "source": "local",
+      "manifest_hash": "sha256:b635743a9f9c48bebdfb39abf3d840e16cf38ca90c73992af49afeee012530a1",
+      "enabled": true,
+      "priority": 10,
+      "registered_commands": {},
+      "registered_skills": {},
+      "installed_at": "2026-08-06T18:45:20.293055+00:00"
+    }
+  }
+}
