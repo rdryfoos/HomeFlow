@@ -1,0 +1,64 @@
+---
+description: HomesFlow trial engineer orientation — Spec Kit, Golden Thread, craft/PR hygiene
+alwaysApply: true
+---
+
+# Context Primer — HomesFlow trial engineer
+
+You are joining HomesFlow as a trial collaborator. Your job is to deliver a thin slice the HomesFlow way: Spec Kit discipline, Golden Thread integrity, then craft/PR hygiene. Do not try to match prior agent diffs or invent product scope.
+
+## How to work with Rik
+- High-signal, direct, verify before asserting.
+- Self-serve from the repo. Ask only when the PRD is silent or something is broken/off-repo.
+
+## Read first (in order)
+1. `CLAUDE.md` — entry + hard rules
+2. `.specify/memory/constitution.md` — process/architecture law (Hierarchy of Truth)
+3. `traceability.md` — Gate 2 mechanics
+4. `HomesFlow.prd.md` — **product scope only**
+5. `specs/001-mvp/dev-notes.md` — env + operational state
+6. `specs/001-mvp/craft-conventions.md` — craft + delivery
+
+## Hard rules
+- **Product scope** comes only from `HomesFlow.prd.md`. Do not invent, extrapolate, or assume requirements. If the PRD is silent, ask or propose a PRD change — do not ship guessed behavior.
+- **Process/architecture** comes from the constitution. Do not invent product behavior from the constitution, glossary, story map, or craft docs.
+- **Story map** (StoriesOnBoard) is a human planning aid only — not Gate-2-enforced. Promote into the PRD when it becomes product truth.
+- **Gate 2** proves the PRD is *true of the system* (IDs ↔ `@covers` ↔ `test_AC_*` or tracked debt). It does not prove the PRD is the right product.
+
+## Spec Kit loop (expected)
+For the assigned thin slice:
+1. Confirm the authoritative IDs in `HomesFlow.prd.md` (Rik amends the PRD first if needed).
+2. Fan into `specs/001-mvp/` (spec → plan → tasks) without minting new requirement IDs in the feature folder.
+3. Implement only what tasks authorize; keep `Traces:` on every task.
+4. Prove with `@covers` and `test_AC_*` (or leave unchecked tasks as tracked debt — never silent gaps).
+5. Run `bash scripts/check-traceability.sh` before you call the slice done.
+
+## Golden Thread (commands)
+```bash
+bash scripts/check-traceability.sh          # must PASS
+bash scripts/check-traceability.sh --json   # per-ID detail
+```
+Coverage matrix (`coverage.md`) is a portfolio snapshot; CI enforces the gate script, not file freshness.
+
+## Craft / PR hygiene
+```text
+feature branch → PR → craft-gate (+ Sonar) green → merge to main
+```
+- Branch naming for cloud agents: `cursor/<descriptive-name>-7716`
+- Fill `.github/pull_request_template.md` (task IDs, Traces, Gate 2 evidence)
+- Do not push product/craft changes straight to `main`
+- Follow `craft-conventions.md` (SwiftLint, policy objects where logic is testable)
+
+## Your trial assignment
+Rik will give you **one micro acceptance criterion** newly added to the PRD (atomic, unit-testable). Take it through Spec Kit → implementation → Gate 2 green → PR.
+
+**Success looks like:** clean Spec Kit artifacts, unbroken golden thread for that ID, and a reviewable PR.
+**Non-goals:** matching a prior check-in’s code; rebuilding the thread visualizer; expanding scope “while you’re in there.”
+
+## Local assumptions (confirm if relevant)
+- Supabase local: `127.0.0.1:54321`; `Secrets.xcconfig` from `.example`
+- Xcode: `cd ios && xcodegen generate`
+- Paths: `ios/HomesFlow/`, `ios/HomesFlowTests/`
+
+## Starting the session
+Confirm: (1) you have the micro-AC ID and PRD text, (2) local vs cloud env, (3) any blockers not in `dev-notes`. Then proceed.
