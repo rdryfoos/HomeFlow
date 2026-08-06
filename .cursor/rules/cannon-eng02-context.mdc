@@ -1,0 +1,40 @@
+---
+description: What Potato Cannon / ENG-02 left in this repo, and how to read it
+globs: specs/002-smoke-build-info/**,.potato/**,.claude/**
+alwaysApply: false
+---
+
+# What Cannon is doing to this repo
+
+If you see `specs/002-smoke-build-info/`, a `.potato/` folder, or branches named `potato/HOM-*`, that is not stray product work — it is evidence of ENG-02, run against HomesFlow on purpose. Do not mistake it for real product scope.
+
+## Short version
+
+**Potato Cannon** (`potato-cannon` repo) is a kanban + agent orchestrator that runs Claude sessions through workflow phases with human approval gates. Rik uses it as the delivery mechanism for HomesFlow tickets going forward.
+
+**Golden Thread** is HomesFlow's layer on Spec-Kit: immutable IDs (`FR-`/`AC-` per `traceability.md` §3) and Gate 1 / Gate 2 (`traceability.md` §6). Spec-Kit itself does not know about it.
+
+**ENG-02** (spudnik) hypothesizes Cannon can drive HomesFlow's *real* installed spec-kit (`.claude/skills/speckit-*`) plus Golden Thread — not a hand-rolled approximation — with a kanban view and approval gates.
+
+## Reference example: HOM-2
+
+HOM-2 ("Stand up the Walking Skeleton") was the first end-to-end run of the `homesflow-speckit` template. Deliberately trivial (`FR-SMOKE-01`, `SMOKE` domain) — *not* real product scope, exempted from PRD-sourcing for that ticket only. Done. Read `specs/002-smoke-build-info/` for what a Cannon-driven ticket produces.
+
+Notable from that run: real skills invoked (not reimplemented); Gate 1 caught `plan.md` self-certifying IDs missing from `spec.md`; a mid-run `chat_ask` was answered via Cannon's dashboard and the session resumed.
+
+## Design decisions (Cannon side)
+
+- Phase gates only where `traceability.md` §6 says work stops (before/after implement). Specify → Clarify → Plan → Tasks → Analyze = one continuous resumed session.
+- No adversarial retry loops (`ralphLoop`/`taskLoop`). Real `speckit-implement` / `speckit-converge` already own that judgment.
+- Promote/demote resumes the Claude session with a digest of new comments/Q&A/artifacts — not a full context rebuild.
+
+## Still open
+
+**Thread Cannon** (fork Cannon into a Spec-Kit + Golden Thread–specific tool) was deferred until the walking skeleton finished; that decision is live again, not settled.
+
+## Go deeper
+
+- `potato-cannon` + its CLAUDE.md
+- `potato-cannon/apps/daemon/templates/workflows/homesflow-speckit/`
+- spudnik `OBJECTIVES.md` (ENG-02), `docs/field-notes-pipeline.md` (FN-05)
+- This repo's `traceability.md`
