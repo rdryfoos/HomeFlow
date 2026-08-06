@@ -1,21 +1,19 @@
 {
   "schema_version": "1.0",
   "extensions": {
-    "agent-context": {
-      "version": "1.0.0",
+    "clewseau-gate": {
+      "version": "0.2.0",
       "source": "local",
-      "manifest_hash": "sha256:9a1dc02d2d0139bb03860392ecacef79183be2c442feda2f9ccaa4e5907b1e47",
+      "manifest_hash": "sha256:c540ad473eb810d0952c51812571222b0d45b9f7aa5828d252d0cb5809110c89",
       "enabled": true,
       "priority": 10,
       "registered_commands": {
         "claude": [
-          "speckit.agent-context.update"
+          "speckit.clewseau-gate.check"
         ]
       },
-      "registered_skills": [
-        "speckit-agent-context-update"
-      ],
-      "installed_at": "2026-06-26T14:27:06.775090+00:00"
+      "registered_skills": [],
+      "installed_at": "2026-08-06T20:51:47.837406+00:00"
     }
   }
 }

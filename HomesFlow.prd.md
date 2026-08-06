@@ -42,6 +42,10 @@ HomesFlow is a responsive iOS app (iPhone and iPad) that empowers primary homeow
 * **US-GUEST-01** — As a Guest, I want to see only guest-appropriate information (like WiFi codes/rules), so my access is controlled and simple.
 * **US-GUEST-02** — As a Guest, I want to view house procedures for guests, so I know what is expected during my stay.
 
+**Home display names**
+
+* See **FR-HOME-04** / **AC-HOME-15** — normalize display names (trim ends; collapse internal whitespace). Pure helper; no UI; no sync.
+
 ---
 
 ## Functional Requirements
@@ -52,6 +56,7 @@ HomesFlow is a responsive iOS app (iPhone and iPad) that empowers primary homeow
 * **FR-HOME-01** (Priority: High) — Add/edit home properties with address, photos (display-optimized at upload and cached locally for hero display), and key info.
 * **FR-HOME-02** (Priority: High) — Service provider directory (propane, electric, internet, lawn care, etc.) with contacts and notes.
 * **FR-HOME-03** (Priority: High) — Editable, categorized documents for important details (UI section label: **Files**). Permitted users add files from the **camera**, **photo library**, or **file browser**; file detail offers **Preview** via system Quick Look (zoom, PDF, video, audio where supported), with metadata and actions below.
+* **FR-HOME-04** (Priority: Low) — Normalize home display names by trimming ends and collapsing internal whitespace to a single space. Pure helper; no UI; no sync.
 * **FR-NAV-01** (Priority: High) — Home detail MUST expose four sections labeled **Procedures**, **Contacts**, **Files**, and **People** with device-appropriate navigation (iPhone: hero + horizontal tabs; iPad: compact left-column hero + vertical icon tabs, with a **three-panel** layout — sidebar, section list, and section detail — for every section).
 * **FR-PROC-01** (Priority: High) — Add/edit procedure lists (e.g., winterizing, arrival prep) with persistent status (Not Started / In Progress / Complete / N/A).
 * **FR-PROC-02** (Priority: High) — Procedures contain ordered steps, each with its own status. Owner and Manager users can **create, rename, reorder, and delete** steps on procedures they can modify (per visibility). Guests have read-only access to step content and status.
@@ -219,6 +224,10 @@ Imagine Diane, a homeowner who spends most of her time in Florida, but owns a ch
 * **AC-HOME-13** — Given a user opens a file's detail, when they tap **Preview**, then the system Quick Look preview opens with zoom, scroll, and playback for supported types (images, PDFs, video, audio); detail shows a file summary, metadata, Preview action, share/download, and management actions below.
 * **AC-HOME-14** — Given an Owner or Manager adds a file, when they choose the file source, then camera capture, photo library, and file browser options are all offered, and content from any source uploads through the same metadata flow (title, category, visibility).
 
+### FR-HOME-04 — Home display name normalization
+
+* **AC-HOME-15** — Given a home display name with leading, trailing, or repeated internal whitespace, when it is normalized, then ends are trimmed and internal whitespace collapses to a single space.
+
 ### US-ADMIN-02 / FR-USER-01 — Owner invites users
 
 * **AC-USER-01** — Given an Owner provides an email/phone and role and sends an invite, when the invite is accepted, then the invitee is added to the home with the assigned role and receives appropriate permissions immediately.
@@ -305,6 +314,7 @@ Imagine Diane, a homeowner who spends most of her time in Florida, but owns a ch
 | FR-HOME-01 | FR | Home CRUD |
 | FR-HOME-02 | FR | Service provider directory |
 | FR-HOME-03 | FR | Document library (UI: Files) |
+| FR-HOME-04 | FR | Home display name normalization (trim + collapse whitespace) |
 | FR-NAV-01 | FR | Home section navigation shell |
 | FR-PROC-01 | FR | Procedure lists with status |
 | FR-PROC-02 | FR | Procedure steps: status + CRUD/reorder |
@@ -321,7 +331,7 @@ Imagine Diane, a homeowner who spends most of her time in Florida, but owns a ch
 | NFR-SEC-01 | NFR | Encrypted storage |
 | NFR-SCALE-01 | NFR | 100k concurrent users |
 | NFR-A11Y-01 | NFR | iOS accessibility compliance |
-| AC-HOME-01 … AC-HOME-14 | AC | Home, provider, navigation & files scenarios |
+| AC-HOME-01 … AC-HOME-15 | AC | Home, provider, navigation, files & display-name scenarios |
 | AC-USER-01 … AC-USER-07 | AC | User invite & role scenarios |
 | AC-PROC-01 … AC-PROC-08 | AC | Procedure step scenarios |
 | AC-GUEST-01 … AC-GUEST-05 | AC | Guest access scenarios |

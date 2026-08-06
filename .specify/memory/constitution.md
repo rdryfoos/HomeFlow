@@ -1,63 +1,80 @@
-# HomesFlow Constitution
-
-Non-negotiable laws for this codebase. Product requirements live in `HomesFlow.prd.md`. Traceability mechanics live in `traceability.md`.
+# [PROJECT_NAME] Constitution
+<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
 
 ## Core Principles
 
-### I. Spec-Driven Development (NON-NEGOTIABLE)
+### [PRINCIPLE_1_NAME]
+<!-- Example: I. Library-First -->
+[PRINCIPLE_1_DESCRIPTION]
+<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
 
-No production code without an approved feature spec, plan, and tasks under `specs/`. Run `/speckit.analyze` and resolve all violations before `/speckit.implement`.
+### [PRINCIPLE_2_NAME]
+<!-- Example: II. CLI Interface -->
+[PRINCIPLE_2_DESCRIPTION]
+<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
 
-### II. Native iOS First
+### [PRINCIPLE_3_NAME]
+<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
+[PRINCIPLE_3_DESCRIPTION]
+<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
 
-HomesFlow ships as a native iOS app (Swift / SwiftUI) for iPhone and iPad. No Android, web, or desktop in the initial release (per PRD non-goals).
+### [PRINCIPLE_4_NAME]
+<!-- Example: IV. Integration Testing -->
+[PRINCIPLE_4_DESCRIPTION]
+<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
 
-### III. Offline-Capable Sync (NON-NEGOTIABLE)
+### [PRINCIPLE_5_NAME]
+<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
+[PRINCIPLE_5_DESCRIPTION]
+<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
 
-Local caching and offline sync are core from day one. Conflict resolution follows the PRD's data-type-aware model (AC-SYNC-01, AC-SYNC-05…07): conflicts resolve automatically by most-recent timestamp, except that terminal step statuses (Complete / N/A) are never silently regressed; the losing user is always notified with guidance to re-apply. Structural actions require connectivity. The PRD's Offline sync AC section is authoritative for the per-data-type rules.
+## [SECTION_2_NAME]
+<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
 
-### IV. Role-Based Access
+[SECTION_2_CONTENT]
+<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
 
-Every data operation respects Owner / Manager / Guest roles per home. UI and API must fail closed — insufficient permission blocks the action with a clear message.
+## [SECTION_3_NAME]
+<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
 
-### V. End-to-End Traceability (NON-NEGOTIABLE)
-
-Every FR, NFR, and AC carries a durable ID assigned at the PRD level (`<TYPE>-<DOMAIN>-<NN>`). Each AC is atomic and maps to at least one automated test. Every task in `tasks.md` declares `Traces: <ID>`. `/speckit.analyze` MUST report zero traceability violations before implementation.
-
-Full mechanics: `traceability.md`.
-
-### VI. Accessible by Design
-
-UI MUST respect iOS accessibility settings — especially Dynamic Type, VoiceOver, Reduce Motion, and sufficient contrast. Layouts MUST remain usable at all supported content size categories (**NFR-A11Y-01**). Accessibility is MVP scope, not post-launch polish.
-
-## Technology Constraints
-
-- **Client**: Swift / SwiftUI (iOS)
-- **Backend**: Supabase (PostgreSQL, auth, real-time sync) — see `specs/001-mvp/dev-notes.md` for rationale
-- **Process**: Spec Kit (`.specify/`, `specs/`)
-- **Testing**: XCTest / XCUITest when source exists
-
-## Hierarchy of Truth
-
-When documents conflict, higher layers win:
-
-1. This constitution (`.specify/memory/constitution.md`)
-2. `glossary.md`
-3. `HomesFlow.prd.md` (product requirements and AC registry)
-4. `specs/<feature>/spec.md` (feature slice derived from PRD)
-5. `specs/<feature>/plan.md` and `tasks.md`
-6. Source code
-
-**Scope vs process.** Product scope and acceptance criteria are authoritative only in `HomesFlow.prd.md`. This constitution governs *how* we build (process, architecture, traceability). If the PRD is silent on a product behavior, do not invent scope here — amend the PRD. If documents conflict on *engineering law*, this constitution wins; on *what the product must do*, the PRD wins.
-
-External planning aids (e.g. StoriesOnBoard story maps) may inform humans when drafting or revising the PRD. They are not part of this hierarchy and are not Gate-2-enforced.
+[SECTION_3_CONTENT]
+<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
 
 ## Governance
+<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-Amendments require a version bump and brief rationale. Traceability mechanics live in `traceability.md`; engineering and toolchain notes in `specs/001-mvp/dev-notes.md`. Neither overrides this file or the PRD.
+[GOVERNANCE_RULES]
+<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
 
-**Version**: 1.2.1 | **Ratified**: 2026-06-28 | **Last Amended**: 2026-07-17
+**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
+<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
 
-**1.2.1 rationale**: Clarified Hierarchy of Truth so agents do not blur process law (constitution) with product scope (PRD). Story maps and similar tools stay outside the machine-checked chain.
 
-**1.2.0 rationale**: Principle III previously hardcoded blanket timestamp-wins. Amended to defer to the PRD's data-type-aware conflict model (story-map decision 2026-07-03): automatic resolution with loser notification, terminal-status protection, connectivity-gated structural actions. Keeps the constitution stable as per-data-type rules evolve in the PRD.
+
+<!-- Clewseau (append) — constitution article -->
+
+### Article: End-to-End Traceability (NON-NEGOTIABLE)
+
+Every functional requirement, non-functional requirement, and acceptance criterion carries a durable unique ID of the form `<TYPE>-<DOMAIN>-<NN>` (e.g. `FR-LOG-01`, `AC-OFFL-03`). IDs are assigned once at the PRD level and are never reused or renumbered; retired IDs are tombstoned, not recycled.
+
+1. Each acceptance criterion is **atomic** — one independently testable assertion — and maps to at least one automated test *or* an explicitly tracked debt entry. Silent-gap refusal is at **AC altitude**; US/FR/NFR IDs are planning labels (clew status `backlog`), not silent-gap candidates.
+2. Every task in `tasks.md` MUST declare the ID(s) it implements via a `Traces:` field.
+3. Every verifying test MUST encode the AC ID it protects. Every requirement-bearing source module MUST carry a coverage annotation naming the ID.
+4. Coverage is **bidirectional** and machine-checked: no silent AC gaps, no untraced scope, and exact-set registry ≡ specs ≡ tasks. CI fails the build on any of these.
+5. `/speckit.analyze` MUST report zero Clewseau traceability violations before `/speckit.implement` runs.
+
+### Article: Clewseau vocabulary
+
+Use these terms; do not invent synonyms (especially not “dossier”).
+
+| Term | Meaning |
+|------|---------|
+| **clew** | The Gate-emitted traceability artifact (`format: "clew"`). Default filename `clew.json`. |
+| **clew.json** | Usual on-disk path for a clew (configurable via Gate `clew_path`). |
+| **Clewseau** | Spec Kit overlay: durable IDs, Gate 2, clew emission. Not Thorsten Schlathölter’s open-source `clew` tool. |
+| **clewloupe** | Viewer that consumes a clew only — no target re-scan. |
+| **verified** | Named carrier exists (AC proof and/or `@covers` / proof for US/FR/NFR). |
+| **tracked-debt** | Incomplete, but declared on an open task with `Traces:`. |
+| **GAP** | Silent AC gap — neither proof nor open debt; Gate refuses; thread frays. |
+| **backlog** | US/FR/NFR with no own carrier — planning altitude, not a silent gap. |
+| **Gate 2** | Deterministic Clewseau check + clew emit (`speckit.clewseau-gate.check`). |

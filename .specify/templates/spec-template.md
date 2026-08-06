@@ -8,20 +8,6 @@
 
 **Input**: User description: "$ARGUMENTS"
 
-> Every requirement and AC MUST carry a durable ID per `traceability.md`. IDs are assigned at the PRD level in `HomesFlow.prd.md` — feature specs inherit them; do not mint new IDs here.
-
-## Intended Use
-
-[One paragraph: who uses this feature, for what purpose, in what context.]
-
-## Risk & failure modes
-
-Per `traceability.md` §9.3 — list material failures, user impact, and mitigations traced to FR/AC IDs.
-
-| Failure | User impact | Mitigation / trace |
-|---------|-------------|-------------------|
-| [e.g. sync conflict on step status] | [e.g. surprising checklist state] | [e.g. AC-PROC-03, AC-SYNC-01] |
-
 ## User Scenarios & Testing *(mandatory)*
 
 <!--
@@ -101,7 +87,16 @@ Per `traceability.md` §9.3 — list material failures, user impact, and mitigat
 
 ### Functional Requirements
 
-- **FR-[DOMAIN]-[NN]**: System MUST [specific capability]
+- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
+- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]
+- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
+- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
+- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+
+*Example of marking unclear requirements:*
+
+- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
+- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
 
 ### Key Entities *(include if feature involves data)*
 
