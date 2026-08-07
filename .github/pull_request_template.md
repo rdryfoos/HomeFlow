@@ -5,7 +5,7 @@
 ## Traceability
 
 - **Task ID(s):** T0xx
-- **Traces:** AC-… / FR-… / NFR-… (from `tasks.md` `**Traces**:` fields)
+- **Traces:** AC-… / FR-… / NFR-… (from `tasks.md` `**Carries**:` fields)
 - **PRD silent?** No / Yes — proposed PRD change: …
 
 ## Proof

@@ -42,10 +42,6 @@ HomesFlow is a responsive iOS app (iPhone and iPad) that empowers primary homeow
 * **US-GUEST-01** — As a Guest, I want to see only guest-appropriate information (like WiFi codes/rules), so my access is controlled and simple.
 * **US-GUEST-02** — As a Guest, I want to view house procedures for guests, so I know what is expected during my stay.
 
-**Clewseau cold-agent trial (temporary probe — tombstone after trial)**
-
-* **US-CLEW-01** — As a developer validating Clewseau, I want a tiny pure display-name normalizer with durable IDs, so a stock Spec Kit + Clewseau agent can take one AC from registry through proof without UI or sync scope.
-
 ---
 
 ## Functional Requirements
@@ -56,6 +52,7 @@ HomesFlow is a responsive iOS app (iPhone and iPad) that empowers primary homeow
 * **FR-HOME-01** (Priority: High) — Add/edit home properties with address, photos (display-optimized at upload and cached locally for hero display), and key info.
 * **FR-HOME-02** (Priority: High) — Service provider directory (propane, electric, internet, lawn care, etc.) with contacts and notes.
 * **FR-HOME-03** (Priority: High) — Editable, categorized documents for important details (UI section label: **Files**). Permitted users add files from the **camera**, **photo library**, or **file browser**; file detail offers **Preview** via system Quick Look (zoom, PDF, video, audio where supported), with metadata and actions below.
+* **FR-HOME-04** (Priority: Low) — Home display names MUST be normalized for display by trimming leading/trailing whitespace and collapsing internal runs of whitespace to a single space. Pure helper; no UI, networking, or sync behavior.
 * **FR-NAV-01** (Priority: High) — Home detail MUST expose four sections labeled **Procedures**, **Contacts**, **Files**, and **People** with device-appropriate navigation (iPhone: hero + horizontal tabs; iPad: compact left-column hero + vertical icon tabs, with a **three-panel** layout — sidebar, section list, and section detail — for every section).
 * **FR-PROC-01** (Priority: High) — Add/edit procedure lists (e.g., winterizing, arrival prep) with persistent status (Not Started / In Progress / Complete / N/A).
 * **FR-PROC-02** (Priority: High) — Procedures contain ordered steps, each with its own status. Owner and Manager users can **create, rename, reorder, and delete** steps on procedures they can modify (per visibility). Guests have read-only access to step content and status.
@@ -65,7 +62,6 @@ HomesFlow is a responsive iOS app (iPhone and iPad) that empowers primary homeow
 * **FR-NOTIF-01** (Priority: Medium) — Optional push notifications for changed statuses and new assignments.
 * **FR-LOG-01** (Priority: Medium) — History log of changes for accountability.
 * **FR-LOG-02** (Priority: Medium) — User-authored **Log Book**: Owners and Managers write free-form log entries at household scope or attached to a procedure, viewable in a unified chronological log alongside activity history. Entries are append-only offline, editable only within a 10-minute grace window that starts at server receipt. Guests have no Log Book access.
-* **FR-CLEW-01** (Priority: Low) — **Clewseau trial.** Pure helper `HomeDisplayName.normalized(_:)` collapses whitespace in home display names (no UI, no sync). Temporary probe ID — tombstone after the cold-agent trial.
 
 ---
 
@@ -224,6 +220,10 @@ Imagine Diane, a homeowner who spends most of her time in Florida, but owns a ch
 * **AC-HOME-13** — Given a user opens a file's detail, when they tap **Preview**, then the system Quick Look preview opens with zoom, scroll, and playback for supported types (images, PDFs, video, audio); detail shows a file summary, metadata, Preview action, share/download, and management actions below.
 * **AC-HOME-14** — Given an Owner or Manager adds a file, when they choose the file source, then camera capture, photo library, and file browser options are all offered, and content from any source uploads through the same metadata flow (title, category, visibility).
 
+### FR-HOME-04 — Home display-name normalization
+
+* **AC-HOME-15** — Given a raw home display name with leading/trailing whitespace and internal whitespace runs (spaces, tabs, or newlines), when it is normalized for display, then the result has no leading or trailing whitespace and every internal whitespace run is collapsed to a single space.
+
 ### US-ADMIN-02 / FR-USER-01 — Owner invites users
 
 * **AC-USER-01** — Given an Owner provides an email/phone and role and sends an invite, when the invite is accepted, then the invitee is added to the home with the assigned role and receives appropriate permissions immediately.
@@ -291,12 +291,6 @@ Imagine Diane, a homeowner who spends most of her time in Florida, but owns a ch
 * **AC-A11Y-02** — Given VoiceOver is enabled, when the user navigates home section tabs (horizontal on iPhone, vertical on iPad), then each tab exposes a combined accessibility label (section name + role), selected state is announced, and interactive controls have meaningful hints where non-obvious.
 * **AC-A11Y-03** — Given Reduce Motion is enabled in iOS Settings, when the user navigates between sections or primary screens, then non-essential motion animations are omitted or reduced per system preference.
 
-### US-CLEW-01 / FR-CLEW-01 — Clewseau cold-agent trial (temporary)
-
-> Temporary probe for stock Spec Kit + Clewseau cold-agent validation. Implement as a pure Swift helper + unit test only. Tombstone these IDs after the trial; do not reuse numbers.
-
-* **AC-CLEW-01** — Given a home display name string, when `HomeDisplayName.normalized(_:)` runs, then leading and trailing whitespace are stripped and any internal run of whitespace collapses to a single space.
-
 ---
 
 ## ID Registry (authoritative)
@@ -310,13 +304,13 @@ Imagine Diane, a homeowner who spends most of her time in Florida, but owns a ch
 | US-EDIT-02 | User Story | Manager user manages providers |
 | US-GUEST-01 | User Story | Guest sees limited info |
 | US-GUEST-02 | User Story | Guest views guest procedures |
-| US-CLEW-01 | User Story | Clewseau cold-agent trial (temporary) |
 | FR-USER-01 | FR | Multi-role access per home |
 | FR-AUTH-01 | FR | OAuth / Apple sign-in |
 | FR-USER-02 | FR | Owner user management |
 | FR-HOME-01 | FR | Home CRUD |
 | FR-HOME-02 | FR | Service provider directory |
 | FR-HOME-03 | FR | Document library (UI: Files) |
+| FR-HOME-04 | FR | Home display-name normalization |
 | FR-NAV-01 | FR | Home section navigation shell |
 | FR-PROC-01 | FR | Procedure lists with status |
 | FR-PROC-02 | FR | Procedure steps: status + CRUD/reorder |
@@ -326,7 +320,6 @@ Imagine Diane, a homeowner who spends most of her time in Florida, but owns a ch
 | FR-NOTIF-01 | FR | Push notifications |
 | FR-LOG-01 | FR | Activity history log |
 | FR-LOG-02 | FR | User-authored Log Book |
-| FR-CLEW-01 | FR | Clewseau trial: HomeDisplayName.normalized (temporary) |
 | NFR-OFFL-01 | NFR | Offline sync core requirement |
 | NFR-SYNC-01 | NFR | Sync under 1 second |
 | NFR-PERF-01 | NFR | Screen load under 2s; streaming file preview; throttled prefetch |
@@ -334,11 +327,14 @@ Imagine Diane, a homeowner who spends most of her time in Florida, but owns a ch
 | NFR-SEC-01 | NFR | Encrypted storage |
 | NFR-SCALE-01 | NFR | 100k concurrent users |
 | NFR-A11Y-01 | NFR | iOS accessibility compliance |
-| AC-HOME-01 … AC-HOME-14 | AC | Home, provider, navigation & files scenarios |
+| AC-HOME-01 … AC-HOME-15 | AC | Home, provider, navigation, files & display-name scenarios |
 | AC-USER-01 … AC-USER-07 | AC | User invite & role scenarios |
 | AC-PROC-01 … AC-PROC-08 | AC | Procedure step scenarios |
 | AC-GUEST-01 … AC-GUEST-05 | AC | Guest access scenarios |
 | AC-SYNC-01 … AC-SYNC-07 | AC | Offline sync scenarios (05–07: data-type-aware model) |
 | AC-LOG-01 … AC-LOG-06 | AC | Log Book scenarios |
 | AC-A11Y-01 … AC-A11Y-03 | AC | Accessibility scenarios |
-| AC-CLEW-01 | AC | Clewseau trial: display-name normalize (temporary) |
+
+### Retired IDs
+
+A temporary validation-probe requirement family (a pure display-name normalizer) was withdrawn during the SpecAssay migration. Its capability is being delivered as a first-class HomesFlow requirement. Retired ID slots are not reused.
