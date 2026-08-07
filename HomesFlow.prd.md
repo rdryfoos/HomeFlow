@@ -42,6 +42,10 @@ HomesFlow is a responsive iOS app (iPhone and iPad) that empowers primary homeow
 * **US-GUEST-01** — As a Guest, I want to see only guest-appropriate information (like WiFi codes/rules), so my access is controlled and simple.
 * **US-GUEST-02** — As a Guest, I want to view house procedures for guests, so I know what is expected during my stay.
 
+**Planned (anointed backlog — minted ahead, carried by an open TODO)**
+
+* **US-SHARE-01** — As an Owner, I want to share a single procedure as a read-only link with a non-member helper, so that a one-off task can be followed without granting a full Guest invite.
+
 ---
 
 ## Functional Requirements
@@ -304,6 +308,7 @@ Imagine Diane, a homeowner who spends most of her time in Florida, but owns a ch
 | US-EDIT-02 | User Story | Manager user manages providers |
 | US-GUEST-01 | User Story | Guest sees limited info |
 | US-GUEST-02 | User Story | Guest views guest procedures |
+| US-SHARE-01 | User Story | Share a procedure via read-only link (anointed backlog) |
 | FR-USER-01 | FR | Multi-role access per home |
 | FR-AUTH-01 | FR | OAuth / Apple sign-in |
 | FR-USER-02 | FR | Owner user management |

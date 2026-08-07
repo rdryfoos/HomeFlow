@@ -4,13 +4,13 @@
   "emitter": "specassay-check",
   "targetName": "HomesFlow",
   "repoPath": "/workspace/homesflow",
-  "generatedAt": "2026-08-07T19:27:21.474Z",
+  "generatedAt": "2026-08-07T19:37:04.136Z",
   "gate": {
     "ok": true,
     "failures": []
   },
   "totals": {
-    "registryIdCount": 81,
+    "registryIdCount": 82,
     "acCount": 51,
     "coveredCount": 46
   },
@@ -18,7 +18,7 @@
     "verified": 67,
     "tracked-debt": 10,
     "GAP": 0,
-    "backlog": 4
+    "backlog": 5
   },
   "rows": [
     {
@@ -27,7 +27,7 @@
       "statement": "AC-A11Y-01** \u2014 Given the user has increased text size via iOS Settings (Dynamic Type / Accessibility sizes), when they view dashboard, home detail, or procedure screens, then primary text and controls scale, layouts reflow without clipping essential actions, and primary reading content does not require horizontal scrolling.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 290
+        "line": 294
       },
       "status": "verified",
       "implementations": [
@@ -74,7 +74,7 @@
       "statement": "AC-A11Y-02** \u2014 Given VoiceOver is enabled, when the user navigates home section tabs (horizontal on iPhone, vertical on iPad), then each tab exposes a combined accessibility label (section name + role), selected state is announced, and interactive controls have meaningful hints where non-obvious.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 291
+        "line": 295
       },
       "status": "verified",
       "implementations": [
@@ -121,7 +121,7 @@
       "statement": "AC-A11Y-03** \u2014 Given Reduce Motion is enabled in iOS Settings, when the user navigates between sections or primary screens, then non-essential motion animations are omitted or reduced per system preference.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 292
+        "line": 296
       },
       "status": "verified",
       "implementations": [
@@ -163,7 +163,7 @@
       "statement": "AC-GUEST-01** \u2014 Given a Guest signs in to a home, when they view info, then only fields marked for Guest visibility are shown and edit controls are disabled.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 258
+        "line": 262
       },
       "status": "verified",
       "implementations": [
@@ -220,7 +220,7 @@
       "statement": "AC-GUEST-02** \u2014 Given a Guest tries to access a restricted procedure or document via deep link, when the app evaluates permissions, then access is denied and a clear message is shown explaining limitations.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 259
+        "line": 263
       },
       "status": "verified",
       "implementations": [
@@ -266,7 +266,7 @@
       "statement": "AC-GUEST-03** \u2014 Given the Guest receives updated guest-visibility content while offline and another actor changes visibility before sync, when devices sync, then the most recent timestamp determines visibility and Guests see the latest allowed content.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 260
+        "line": 264
       },
       "status": "verified",
       "implementations": [
@@ -297,7 +297,7 @@
       "statement": "AC-GUEST-04** \u2014 Given a Guest opens a guest procedure, when they view it, then they can see step descriptions and read-only status but cannot change step statuses.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 264
+        "line": 268
       },
       "status": "verified",
       "implementations": [
@@ -333,7 +333,7 @@
       "statement": "AC-GUEST-05** \u2014 Given a Guest attempts to mark a guest step complete, when they submit, then the app rejects the change and logs the attempted unauthorized action for audit.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 265
+        "line": 269
       },
       "status": "verified",
       "implementations": [
@@ -364,7 +364,7 @@
       "statement": "AC-HOME-01** \u2014 Given an authenticated Owner on a connected device, when they submit valid home details and photos, then the home is created and visible in their dashboard with correct data.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 210
+        "line": 214
       },
       "status": "verified",
       "implementations": [
@@ -406,7 +406,7 @@
       "statement": "AC-HOME-02** \u2014 Given an Owner submits incomplete/invalid home details, when they attempt to save, then validation errors are shown and the home is not created.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 211
+        "line": 215
       },
       "status": "verified",
       "implementations": [
@@ -447,7 +447,7 @@
       "statement": "AC-HOME-03** \u2014 Given an Owner edits home details while offline and another device edits the same home before sync, when both devices reconnect, then the version with the most recent timestamp is applied and a conflict log entry is created for audit.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 212
+        "line": 216
       },
       "status": "verified",
       "implementations": [
@@ -503,7 +503,7 @@
       "statement": "AC-HOME-04** \u2014 Given a Manager user opens the service provider directory, when they search and select a provider, then they can edit contact details and changes are saved and propagated to permitted users.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 253
+        "line": 257
       },
       "status": "verified",
       "implementations": [
@@ -559,7 +559,7 @@
       "statement": "AC-HOME-05** \u2014 Given a Manager user edits a provider entry that an Owner later deletes on another device before sync, when both devices sync, then the most recent timestamp between edit and delete determines final state; if delete is most recent the provider is removed and the editor receives a notification that their edit was removed due to delete.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 254
+        "line": 258
       },
       "status": "verified",
       "implementations": [
@@ -605,7 +605,7 @@
       "statement": "AC-HOME-06** \u2014 Given an Owner or Manager user uploads a home photo, when the photo is saved to Storage, then the client uploads a display-optimized JPEG bounded to a maximum pixel dimension (not full camera resolution).",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 213
+        "line": 217
       },
       "status": "verified",
       "implementations": [
@@ -656,7 +656,7 @@
       "statement": "AC-HOME-07** \u2014 Given a user has previously loaded a home photo on this device, when they view the dashboard or home detail again, then the hero photo renders from local cache without re-downloading from Storage.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 214
+        "line": 218
       },
       "status": "verified",
       "implementations": [
@@ -702,7 +702,7 @@
       "statement": "AC-HOME-08** \u2014 Given a home record has not yet synced to the server, when an Owner or Manager user attempts to upload a photo, then the upload is blocked and the user sees actionable guidance to sync first (e.g., pull to refresh while online).",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 215
+        "line": 219
       },
       "status": "verified",
       "implementations": [
@@ -758,7 +758,7 @@
       "statement": "AC-HOME-09** \u2014 Given a user views home detail on iPad (regular horizontal size class), when any section is selected, then the trailing area shows section content only \u2014 no full-bleed home hero and no horizontal section tab bar at the home level (nested section list | detail splits are allowed inside the trailing area).",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 216
+        "line": 220
       },
       "status": "tracked-debt",
       "implementations": [
@@ -784,7 +784,7 @@
       "statement": "AC-HOME-10** \u2014 Given a user opens a home on iPad, when home detail is shown, then the leading column displays a compact home hero (photo, name, address) and vertically stacked tappable section entries with icon and label for Procedures, Contacts, Files, and People; the trailing area shows the selected section using a three-panel layout (sidebar already visible + section list + section detail) for **all four** sections.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 217
+        "line": 221
       },
       "status": "tracked-debt",
       "implementations": [
@@ -820,7 +820,7 @@
       "statement": "AC-HOME-11** \u2014 Given a user views home detail on any device, when section navigation is shown, then section labels read Procedures, Contacts, Files, and People (Files implements the document library).",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 218
+        "line": 222
       },
       "status": "tracked-debt",
       "implementations": [
@@ -851,7 +851,7 @@
       "statement": "AC-HOME-12** \u2014 Given a user with permission to add content views a home section list (Contacts, Files, People), when the section is shown, then a single add action appears as the toolbar primary action using a parallel construction across sections \u2014 a plus icon with an accessible label naming the action (e.g., Add contact, Add file, Invite member) that opens the section's create sheet; users without permission see no add action.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 219
+        "line": 223
       },
       "status": "verified",
       "implementations": [
@@ -917,7 +917,7 @@
       "statement": "AC-HOME-13** \u2014 Given a user opens a file's detail, when they tap **Preview**, then the system Quick Look preview opens with zoom, scroll, and playback for supported types (images, PDFs, video, audio); detail shows a file summary, metadata, Preview action, share/download, and management actions below.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 220
+        "line": 224
       },
       "status": "verified",
       "implementations": [
@@ -978,7 +978,7 @@
       "statement": "AC-HOME-14** \u2014 Given an Owner or Manager adds a file, when they choose the file source, then camera capture, photo library, and file browser options are all offered, and content from any source uploads through the same metadata flow (title, category, visibility).",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 221
+        "line": 225
       },
       "status": "verified",
       "implementations": [
@@ -1039,7 +1039,7 @@
       "statement": "AC-HOME-15** \u2014 Given a raw home display name with leading/trailing whitespace and internal whitespace runs (spaces, tabs, or newlines), when it is normalized for display, then the result has no leading or trailing whitespace and every internal whitespace run is collapsed to a single space.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 225
+        "line": 229
       },
       "status": "verified",
       "implementations": [
@@ -1065,7 +1065,7 @@
       "statement": "AC-LOG-01** \u2014 Given an Owner or Manager opens the Log Book for a home, when they write and save a household-scope entry, then the entry appears in the unified log with author and timestamp.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 281
+        "line": 285
       },
       "status": "verified",
       "implementations": [
@@ -1111,7 +1111,7 @@
       "statement": "AC-LOG-02** \u2014 Given an Owner or Manager views a procedure, when they write a procedure-scope log entry, then the entry is attached to that procedure and also appears in the unified log.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 282
+        "line": 286
       },
       "status": "verified",
       "implementations": [
@@ -1157,7 +1157,7 @@
       "statement": "AC-LOG-03** \u2014 Given a permitted user writes a log entry while offline, when the device reconnects, then the entry syncs append-only (no conflict resolution needed) and appears for other permitted users.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 283
+        "line": 287
       },
       "status": "verified",
       "implementations": [
@@ -1193,7 +1193,7 @@
       "statement": "AC-LOG-04** \u2014 Given a log entry has synced to the server, when the author attempts to edit it, then editing is allowed only within a **10-minute** grace window that starts at server receipt; after the window the entry is immutable.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 284
+        "line": 288
       },
       "status": "verified",
       "implementations": [
@@ -1234,7 +1234,7 @@
       "statement": "AC-LOG-05** \u2014 Given a permitted user opens the unified log view, when entries exist at both household and procedure scope, then entries are shown chronologically and can be filtered by scope.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 285
+        "line": 289
       },
       "status": "verified",
       "implementations": [
@@ -1270,7 +1270,7 @@
       "statement": "AC-LOG-06** \u2014 Given a Guest is signed in, when they attempt to view the Log Book directly or via deep link, then access is denied with a clear message.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 286
+        "line": 290
       },
       "status": "verified",
       "implementations": [
@@ -1306,7 +1306,7 @@
       "statement": "AC-PROC-01** \u2014 Given a Manager user views a procedure, when they mark a step Complete, then the step status updates for all users with appropriate visibility, the procedure's aggregate status and progress in the procedures list update immediately, and an activity log entry is created.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 242
+        "line": 246
       },
       "status": "verified",
       "implementations": [
@@ -1352,7 +1352,7 @@
       "statement": "AC-PROC-02** \u2014 Given a Manager user attempts to update a step beyond their permission (e.g., another home's owner-only procedure or step), when they submit the change, then the app blocks the update and shows a permission error.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 243
+        "line": 247
       },
       "status": "verified",
       "implementations": [
@@ -1393,7 +1393,7 @@
       "statement": "AC-PROC-03** \u2014 Given a Manager user updates a step while offline and another user updates the same step before sync, when both devices reconnect, then the update with the most recent timestamp is persisted and the other user receives a notification about the overwritten change with reference to the activity log.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 244
+        "line": 248
       },
       "status": "verified",
       "implementations": [
@@ -1424,7 +1424,7 @@
       "statement": "AC-PROC-04** \u2014 Given an Owner or Manager user long-presses a step on a procedure they can modify, when the context menu appears, then Edit, Delete, Move Up, and Move Down are available.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 245
+        "line": 249
       },
       "status": "verified",
       "implementations": [
@@ -1475,7 +1475,7 @@
       "statement": "AC-PROC-05** \u2014 Given an Owner or Manager user taps Add on the Steps section, when they enter a title and save, then a new step is appended at the next sort order and appears for permitted users after sync.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 246
+        "line": 250
       },
       "status": "verified",
       "implementations": [
@@ -1531,7 +1531,7 @@
       "statement": "AC-PROC-06** \u2014 Given an Owner or Manager user creates, renames, reorders, or deletes a step, when the change syncs, then it persists for permitted users and an activity log entry is created.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 247
+        "line": 251
       },
       "status": "verified",
       "implementations": [
@@ -1567,7 +1567,7 @@
       "statement": "AC-PROC-07** \u2014 Given a Guest views a procedure, when they interact with steps, then step structure controls (long-press menu, Add step) are not available and step status remains read-only.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 248
+        "line": 252
       },
       "status": "verified",
       "implementations": [
@@ -1613,7 +1613,7 @@
       "statement": "AC-PROC-08** \u2014 Given a user views a step with an attached photo, when they tap **Photo attached**, then the photo opens in a modal preview; step rows show notes below the title, a tappable photo indicator when present, a pencil **Edit** control (when permitted) to the left of the status ellipsis menu, and the ellipsis menu remains rightmost.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 249
+        "line": 253
       },
       "status": "verified",
       "implementations": [
@@ -1659,7 +1659,7 @@
       "statement": "> Conflict model evolution (decided 2026-07-03, source: story map; refined same day): v1 ships timestamp-wins (AC-SYNC-01, implemented and verified). The model is refined to be **data-type-aware**: terminal step statuses are protected (AC-SYNC-05), other status conflicts resolve automatically with loser notification \u2014 no human conflict-resolution UI (AC-SYNC-06), and structural actions are connectivity-gated (AC-SYNC-07). Field-level merge (AC-SYNC-02) is deferred to a later phase alongside version vectors.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 269
+        "line": 273
       },
       "status": "verified",
       "implementations": [
@@ -1741,7 +1741,7 @@
       "statement": "> Conflict model evolution (decided 2026-07-03, source: story map; refined same day): v1 ships timestamp-wins (AC-SYNC-01, implemented and verified). The model is refined to be **data-type-aware**: terminal step statuses are protected (AC-SYNC-05), other status conflicts resolve automatically with loser notification \u2014 no human conflict-resolution UI (AC-SYNC-06), and structural actions are connectivity-gated (AC-SYNC-07). Field-level merge (AC-SYNC-02) is deferred to a later phase alongside version vectors.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 269
+        "line": 273
       },
       "status": "tracked-debt",
       "implementations": [
@@ -1772,7 +1772,7 @@
       "statement": "AC-SYNC-03** \u2014 Given a user attempts an action that depends on stale permissions cached offline, when syncing, then if the server denies the action, the client reverts the change and shows a permission error with guidance to retry.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 273
+        "line": 277
       },
       "status": "verified",
       "implementations": [
@@ -1803,7 +1803,7 @@
       "statement": "AC-SYNC-04** \u2014 Given local changes or homes are pending sync to the server, when the user views the dashboard, then unsynced homes are visibly indicated and the user can pull to refresh to retry sync while online.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 274
+        "line": 278
       },
       "status": "verified",
       "implementations": [
@@ -1844,7 +1844,7 @@
       "statement": "> Conflict model evolution (decided 2026-07-03, source: story map; refined same day): v1 ships timestamp-wins (AC-SYNC-01, implemented and verified). The model is refined to be **data-type-aware**: terminal step statuses are protected (AC-SYNC-05), other status conflicts resolve automatically with loser notification \u2014 no human conflict-resolution UI (AC-SYNC-06), and structural actions are connectivity-gated (AC-SYNC-07). Field-level merge (AC-SYNC-02) is deferred to a later phase alongside version vectors.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 269
+        "line": 273
       },
       "status": "verified",
       "implementations": [
@@ -1885,7 +1885,7 @@
       "statement": "> Conflict model evolution (decided 2026-07-03, source: story map; refined same day): v1 ships timestamp-wins (AC-SYNC-01, implemented and verified). The model is refined to be **data-type-aware**: terminal step statuses are protected (AC-SYNC-05), other status conflicts resolve automatically with loser notification \u2014 no human conflict-resolution UI (AC-SYNC-06), and structural actions are connectivity-gated (AC-SYNC-07). Field-level merge (AC-SYNC-02) is deferred to a later phase alongside version vectors.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 269
+        "line": 273
       },
       "status": "verified",
       "implementations": [
@@ -1921,7 +1921,7 @@
       "statement": "> Conflict model evolution (decided 2026-07-03, source: story map; refined same day): v1 ships timestamp-wins (AC-SYNC-01, implemented and verified). The model is refined to be **data-type-aware**: terminal step statuses are protected (AC-SYNC-05), other status conflicts resolve automatically with loser notification \u2014 no human conflict-resolution UI (AC-SYNC-06), and structural actions are connectivity-gated (AC-SYNC-07). Field-level merge (AC-SYNC-02) is deferred to a later phase alongside version vectors.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 269
+        "line": 273
       },
       "status": "verified",
       "implementations": [
@@ -1992,7 +1992,7 @@
       "statement": "AC-USER-01** \u2014 Given an Owner provides an email/phone and role and sends an invite, when the invite is accepted, then the invitee is added to the home with the assigned role and receives appropriate permissions immediately.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 229
+        "line": 233
       },
       "status": "verified",
       "implementations": [
@@ -2043,7 +2043,7 @@
       "statement": "AC-USER-02** \u2014 Given an Owner re-sends or revokes an invite before acceptance, when they revoke, then the invite token becomes invalid and the invitee cannot join with that token.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 231
+        "line": 235
       },
       "status": "verified",
       "implementations": [
@@ -2099,7 +2099,7 @@
       "statement": "AC-USER-03** \u2014 Given an Owner invites a user while offline and the invite is processed on another device first, when sync occurs, then the most recent action (invite or revoke) by timestamp determines invite state and the Owner receives a notification of the resolved outcome.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 232
+        "line": 236
       },
       "status": "tracked-debt",
       "implementations": [],
@@ -2124,7 +2124,7 @@
       "statement": "AC-USER-04** \u2014 Given an Owner assigns a Manager role to a user, when the user signs in, then they can create and modify procedures and service providers for that home.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 236
+        "line": 240
       },
       "status": "verified",
       "implementations": [
@@ -2165,7 +2165,7 @@
       "statement": "AC-USER-05** \u2014 Given an Owner assigns a Guest role to a user, when the guest signs in, then they see only guest-appropriate fields (e.g., WiFi, guest procedures) and cannot edit protected data.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 237
+        "line": 241
       },
       "status": "verified",
       "implementations": [
@@ -2196,7 +2196,7 @@
       "statement": "AC-USER-06** \u2014 Given concurrent role changes occur on multiple devices, when devices sync, then the change with the most recent timestamp wins and an owner-visible audit entry records the prior role.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 238
+        "line": 242
       },
       "status": "verified",
       "implementations": [
@@ -2227,7 +2227,7 @@
       "statement": "AC-USER-07** \u2014 Given an Owner creates an invite in MVP, when the invitee receives the shared invite link or token and signs in with the invited email, then they can accept the invite (paste token or open link) and join the home with the assigned role.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 230
+        "line": 234
       },
       "status": "verified",
       "implementations": [
@@ -2268,7 +2268,7 @@
       "statement": "FR-AUTH-01** (Priority: Critical) \u2014 Secure user authentication via OAuth or Apple ID sign-in.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 50
+        "line": 54
       },
       "status": "verified",
       "implementations": [
@@ -2329,7 +2329,7 @@
       "statement": "FR-GUEST-01** (Priority: Medium) \u2014 Guest users view only approved procedures and info.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 60
+        "line": 64
       },
       "status": "verified",
       "implementations": [
@@ -2375,7 +2375,7 @@
       "statement": "FR-GUEST-02** (Priority: Medium) \u2014 Quick guest onboarding via email or SMS invite.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 61
+        "line": 65
       },
       "status": "verified",
       "implementations": [
@@ -2400,7 +2400,7 @@
       "statement": "FR-HOME-01** (Priority: High) \u2014 Add/edit home properties with address, photos (display-optimized at upload and cached locally for hero display), and key info.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 52
+        "line": 56
       },
       "status": "verified",
       "implementations": [
@@ -2455,7 +2455,7 @@
       "statement": "FR-HOME-02** (Priority: High) \u2014 Service provider directory (propane, electric, internet, lawn care, etc.) with contacts and notes.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 53
+        "line": 57
       },
       "status": "verified",
       "implementations": [
@@ -2490,7 +2490,7 @@
       "statement": "FR-HOME-03** (Priority: High) \u2014 Editable, categorized documents for important details (UI section label: **Files**). Permitted users add files from the **camera**, **photo library**, or **file browser**; file detail offers **Preview** via system Quick Look (zoom, PDF, video, audio where supported), with metadata and actions below.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 54
+        "line": 58
       },
       "status": "verified",
       "implementations": [
@@ -2530,7 +2530,7 @@
       "statement": "FR-HOME-04** (Priority: Low) \u2014 Home display names MUST be normalized for display by trimming leading/trailing whitespace and collapsing internal runs of whitespace to a single space. Pure helper; no UI, networking, or sync behavior.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 55
+        "line": 59
       },
       "status": "verified",
       "implementations": [
@@ -2550,7 +2550,7 @@
       "statement": "FR-LOG-01** (Priority: Medium) \u2014 History log of changes for accountability.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 63
+        "line": 67
       },
       "status": "verified",
       "implementations": [
@@ -2580,7 +2580,7 @@
       "statement": "FR-LOG-02** (Priority: Medium) \u2014 User-authored **Log Book**: Owners and Managers write free-form log entries at household scope or attached to a procedure, viewable in a unified chronological log alongside activity history. Entries are append-only offline, editable only within a 10-minute grace window that starts at server receipt. Guests have no Log Book access.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 64
+        "line": 68
       },
       "status": "verified",
       "implementations": [
@@ -2630,7 +2630,7 @@
       "statement": "FR-NAV-01** (Priority: High) \u2014 Home detail MUST expose four sections labeled **Procedures**, **Contacts**, **Files**, and **People** with device-appropriate navigation (iPhone: hero + horizontal tabs; iPad: compact left-column hero + vertical icon tabs, with a **three-panel** layout \u2014 sidebar, section list, and section detail \u2014 for every section).",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 56
+        "line": 60
       },
       "status": "verified",
       "implementations": [
@@ -2675,7 +2675,7 @@
       "statement": "FR-NOTIF-01** (Priority: Medium) \u2014 Optional push notifications for changed statuses and new assignments.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 62
+        "line": 66
       },
       "status": "verified",
       "implementations": [
@@ -2695,7 +2695,7 @@
       "statement": "FR-PROC-01** (Priority: High) \u2014 Add/edit procedure lists (e.g., winterizing, arrival prep) with persistent status (Not Started / In Progress / Complete / N/A).",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 57
+        "line": 61
       },
       "status": "verified",
       "implementations": [
@@ -2730,7 +2730,7 @@
       "statement": "FR-PROC-02** (Priority: High) \u2014 Procedures contain ordered steps, each with its own status. Owner and Manager users can **create, rename, reorder, and delete** steps on procedures they can modify (per visibility). Guests have read-only access to step content and status.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 58
+        "line": 62
       },
       "status": "verified",
       "implementations": [
@@ -2765,7 +2765,7 @@
       "statement": "FR-PROC-03** (Priority: High) \u2014 Attach optional notes and photos to individual procedure steps (document attachments remain on the Files tab per FR-HOME-03).",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 59
+        "line": 63
       },
       "status": "verified",
       "implementations": [
@@ -2795,7 +2795,7 @@
       "statement": "FR-USER-01** (Priority: Critical) \u2014 Multi-role (Owner, Manager, Guest) invitation and access logic, scoped per home.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 49
+        "line": 53
       },
       "status": "verified",
       "implementations": [
@@ -2836,7 +2836,7 @@
       "statement": "FR-USER-02** (Priority: Critical) \u2014 Owners can add, edit, remove users and assign roles.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 51
+        "line": 55
       },
       "status": "verified",
       "implementations": [
@@ -2876,7 +2876,7 @@
       "statement": "NFR-A11Y-01** \u2014 UI MUST respect iOS accessibility settings (Dynamic Type, VoiceOver, Reduce Motion, contrast) and remain usable at all supported content size categories",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 141
+        "line": 145
       },
       "status": "verified",
       "implementations": [
@@ -2911,7 +2911,7 @@
       "statement": "NFR-OFFL-01** \u2014 Local data caching and offline sync as a core requirement from day one",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 160
+        "line": 164
       },
       "status": "verified",
       "implementations": [
@@ -2957,7 +2957,7 @@
       "statement": "NFR-PERF-01** \u2014 Sub-2s average screen load times (across devices); client streams large file previews to disk (avoids holding entire files in memory) and limits concurrent home-photo prefetch.",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 140
+        "line": 144
       },
       "status": "verified",
       "implementations": [
@@ -2993,7 +2993,7 @@
       "statement": "NFR-REL-01** \u2014 99.9% crash-free sessions",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 138
+        "line": 142
       },
       "status": "tracked-debt",
       "implementations": [],
@@ -3013,7 +3013,7 @@
       "statement": "NFR-SCALE-01** \u2014 Designed for 100,000 concurrent users",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 177
+        "line": 181
       },
       "status": "tracked-debt",
       "implementations": [],
@@ -3033,7 +3033,7 @@
       "statement": "NFR-SEC-01** \u2014 Encrypted storage for all personal/home/procedure data",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 171
+        "line": 175
       },
       "status": "verified",
       "implementations": [
@@ -3074,7 +3074,7 @@
       "statement": "NFR-SYNC-01** \u2014 Time-to-sync for updates below 1 second",
       "registry": {
         "path": "HomesFlow.prd.md",
-        "line": 139
+        "line": 143
       },
       "status": "tracked-debt",
       "implementations": [],
@@ -3233,6 +3233,26 @@
       "implementations": [],
       "proofs": [],
       "debtTasks": [],
+      "attestedBy": null
+    },
+    {
+      "id": "US-SHARE-01",
+      "type": "US",
+      "statement": "US-SHARE-01** \u2014 As an Owner, I want to share a single procedure as a read-only link with a non-member helper, so that a one-off task can be followed without granting a full Guest invite.",
+      "registry": {
+        "path": "HomesFlow.prd.md",
+        "line": 47
+      },
+      "status": "backlog",
+      "implementations": [],
+      "proofs": [],
+      "debtTasks": [
+        {
+          "path": "specs/backlog/tasks.md",
+          "line": 8,
+          "excerpt": "- [ ] T901 Deliver read-only procedure sharing link \u2014 **Carries**: US-SHARE-01"
+        }
+      ],
       "attestedBy": null
     }
   ]

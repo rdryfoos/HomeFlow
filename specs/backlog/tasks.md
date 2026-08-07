@@ -5,4 +5,4 @@ is this TODO. Minting into backlog is deliberate — the TODO proves intent and
 names who is carrying what. Moving an item out of backlog means creating its
 feature spec and tasks, which claims the ID and retires the line here.
 
-_None currently._
+- [ ] T901 Deliver read-only procedure sharing link — **Carries**: US-SHARE-01
