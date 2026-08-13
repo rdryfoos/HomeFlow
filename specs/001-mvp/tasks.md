@@ -25,7 +25,7 @@ Partial deliverables documented in [dev-notes.md](./dev-notes.md). **Do not** en
 
 ## Format
 
-- **Traces**: AC/FR/NFR ID(s) implemented
+- **Carries**: AC/FR/NFR ID(s) implemented
 - **[P]**: Parallelizable
 - **[US-*]**: User story label
 
@@ -35,9 +35,9 @@ Partial deliverables documented in [dev-notes.md](./dev-notes.md). **Do not** en
 
 **Purpose**: Repo tooling and project skeleton
 
-- [x] T001 Create `ios/HomesFlow.xcodeproj` — universal iOS 17+ SwiftUI app target + unit/UI test targets per plan.md — **Traces**: plan Phase 0 (infrastructure)
-- [x] T002 [P] Initialize `supabase/` with `config.toml` and local dev setup per quickstart.md — **Traces**: plan Phase 0 (infrastructure)
-- [x] T003 [P] Add `.gitignore` entries for `Secrets.xcconfig`, DerivedData (verify ios secrets not committed) — **Traces**: NFR-SEC-01
+- [x] T001 Create `ios/HomesFlow.xcodeproj` — universal iOS 17+ SwiftUI app target + unit/UI test targets per plan.md — **Carries**: plan Phase 0 (infrastructure)
+- [x] T002 [P] Initialize `supabase/` with `config.toml` and local dev setup per quickstart.md — **Carries**: plan Phase 0 (infrastructure)
+- [x] T003 [P] Add `.gitignore` entries for `Secrets.xcconfig`, DerivedData (verify ios secrets not committed) — **Carries**: NFR-SEC-01
 
 ---
 
@@ -45,16 +45,16 @@ Partial deliverables documented in [dev-notes.md](./dev-notes.md). **Do not** en
 
 **Purpose**: Backend schema, auth, local cache, sync skeleton — **no user story UI until complete**
 
-- [x] T004 Write `supabase/migrations/001_initial_schema.sql` from data-model.md (enums, tables, indexes) — **Traces**: FR-HOME-01, FR-USER-01, FR-PROC-01
-- [x] T005 Implement RLS policies + `get_user_role()` per contracts/rls-permissions.md — **Traces**: FR-USER-01, FR-GUEST-01, AC-GUEST-02
-- [x] T006 [P] Configure Supabase Auth: Apple + email/password providers — **Traces**: FR-AUTH-01 — *email/password done; Apple app-side shipped 2026-07-08; cloud dashboard provider remains ops step (D12)*
-- [x] T007 [P] Create Supabase Storage buckets + policies (home-photos, documents, procedure-attachments) — **Traces**: FR-HOME-01, FR-HOME-03, FR-PROC-03 — *002_storage_profiles_invites.sql*
-- [x] T008 Implement `ios/HomesFlow/Core/Supabase/SupabaseClientProvider.swift` + Keychain session — **Traces**: FR-AUTH-01, NFR-SEC-01 — *supabase-swift session + authStateChanges*
-- [x] T009 Define SwiftData models mirroring server tables + `MutationOutbox` in `ios/HomesFlow/Core/Models/` — **Traces**: NFR-OFFL-01
-- [x] T010 Implement `PermissionService` matching RLS matrix in `ios/HomesFlow/Core/Permissions/` — **Traces**: FR-USER-01, AC-PROC-02, AC-GUEST-02
-- [x] T011 Implement `SyncEngine` skeleton (outbox enqueue, push, pull, revert-on-deny) in `ios/HomesFlow/Core/Sync/` — **Traces**: NFR-OFFL-01, AC-SYNC-01, AC-SYNC-02, AC-SYNC-03 — *homes push/pull; partial AC-SYNC-02*
-- [x] T012 Implement `ActivityLogService` append + fetch in `ios/HomesFlow/Core/ActivityLog/` — **Traces**: FR-LOG-01 — *append done; fetch UI pending*
-- [x] T013 Wire `AppRouter` + root auth gate in `ios/HomesFlow/App/` — **Traces**: FR-AUTH-01
+- [x] T004 Write `supabase/migrations/001_initial_schema.sql` from data-model.md (enums, tables, indexes) — **Carries**: FR-HOME-01, FR-USER-01, FR-PROC-01
+- [x] T005 Implement RLS policies + `get_user_role()` per contracts/rls-permissions.md — **Carries**: FR-USER-01, FR-GUEST-01, AC-GUEST-02
+- [x] T006 [P] Configure Supabase Auth: Apple + email/password providers — **Carries**: FR-AUTH-01 — *email/password done; Apple app-side shipped 2026-07-08; cloud dashboard provider remains ops step (D12)*
+- [x] T007 [P] Create Supabase Storage buckets + policies (home-photos, documents, procedure-attachments) — **Carries**: FR-HOME-01, FR-HOME-03, FR-PROC-03 — *002_storage_profiles_invites.sql*
+- [x] T008 Implement `ios/HomesFlow/Core/Supabase/SupabaseClientProvider.swift` + Keychain session — **Carries**: FR-AUTH-01, NFR-SEC-01 — *supabase-swift session + authStateChanges*
+- [x] T009 Define SwiftData models mirroring server tables + `MutationOutbox` in `ios/HomesFlow/Core/Models/` — **Carries**: NFR-OFFL-01
+- [x] T010 Implement `PermissionService` matching RLS matrix in `ios/HomesFlow/Core/Permissions/` — **Carries**: FR-USER-01, AC-PROC-02, AC-GUEST-02
+- [x] T011 Implement `SyncEngine` skeleton (outbox enqueue, push, pull, revert-on-deny) in `ios/HomesFlow/Core/Sync/` — **Carries**: NFR-OFFL-01, AC-SYNC-01, AC-SYNC-02, AC-SYNC-03 — *homes push/pull; partial AC-SYNC-02*
+- [x] T012 Implement `ActivityLogService` append + fetch in `ios/HomesFlow/Core/ActivityLog/` — **Carries**: FR-LOG-01 — *append done; fetch UI pending*
+- [x] T013 Wire `AppRouter` + root auth gate in `ios/HomesFlow/App/` — **Carries**: FR-AUTH-01
 
 **Checkpoint**: Sign-in works; empty authenticated shell loads; migrations apply cleanly. ✅
 
@@ -66,13 +66,13 @@ Partial deliverables documented in [dev-notes.md](./dev-notes.md). **Do not** en
 
 ### Implementation
 
-- [x] T014 [US-ADMIN-01] Auth screens: email/password sign-up, sign-in, Sign in with Apple in `ios/HomesFlow/Features/Auth/` — **Traces**: FR-AUTH-01 — *Apple wired 2026-07-08*
-- [x] T015 [US-ADMIN-01] Dashboard home list view (SwiftUI) — full-bleed photo hero cards with name/address in `ios/HomesFlow/Features/Dashboard/` — **Traces**: FR-HOME-01, AC-SYNC-04 — *procedure count placeholder not yet*
-- [x] T016 [P] [US-ADMIN-01] Adaptive layout: iPhone `NavigationStack`, iPad `NavigationSplitView` shell for dashboard — **Traces**: NFR-PERF-01
+- [x] T014 [US-ADMIN-01] Auth screens: email/password sign-up, sign-in, Sign in with Apple in `ios/HomesFlow/Features/Auth/` — **Carries**: FR-AUTH-01 — *Apple wired 2026-07-08*
+- [x] T015 [US-ADMIN-01] Dashboard home list view (SwiftUI) — full-bleed photo hero cards with name/address in `ios/HomesFlow/Features/Dashboard/` — **Carries**: FR-HOME-01, AC-SYNC-04 — *procedure count placeholder not yet*
+- [x] T016 [P] [US-ADMIN-01] Adaptive layout: iPhone `NavigationStack`, iPad `NavigationSplitView` shell for dashboard — **Carries**: NFR-PERF-01
 
 ### Tests
 
-- [ ] T017 [P] [US-ADMIN-01] XCUITest: sign-in with email → dashboard visible — **Traces**: FR-AUTH-01
+- [ ] T017 [P] [US-ADMIN-01] XCUITest: sign-in with email → dashboard visible — **Carries**: FR-AUTH-01
 
 ---
 
@@ -82,26 +82,26 @@ Partial deliverables documented in [dev-notes.md](./dev-notes.md). **Do not** en
 
 ### Implementation
 
-- [x] T018 [US-ADMIN-01] Home create/edit form + validation in `ios/HomesFlow/Features/HomeSetup/` — **Traces**: AC-HOME-01, AC-HOME-02, FR-HOME-01
-- [x] T019 [US-ADMIN-01] Home photo pick + upload to Supabase Storage — **Traces**: AC-HOME-01, AC-HOME-08, FR-HOME-01 — *sync-before-upload*
-- [x] T019a [P] [US-ADMIN-01] Home photo display optimization: resize on upload, disk/memory cache, signed-URL reuse, throttled dashboard prefetch (max 2 concurrent) in `ios/HomesFlow/Core/Storage/` — **Traces**: AC-HOME-06, AC-HOME-07, FR-HOME-01, NFR-PERF-01
-- [x] T020 [US-ADMIN-01] Home edit offline + sync conflict (timestamp wins + activity log) — **Traces**: AC-HOME-03, AC-SYNC-01, FR-LOG-01 — *HomeConflictResolver + merge; full offline E2E pending*
-- [x] T021 [P] [US-ADMIN-01] Home detail full-bleed photo hero header + tab bar shell (Procedures | Contacts | Documents | People) — **Traces**: FR-HOME-01 — *superseded by T021a–b*
-- [x] T021a [P] [US-ADMIN-01] iPad home detail: compact left-column hero + vertical icon tabs; trailing area three-panel (list | detail) for **all** sections — **Traces**: FR-NAV-01, AC-HOME-09, AC-HOME-10 — *ContactsView, FilesView, MembersView split shells*
-- [x] T021b [P] [US-ADMIN-01] Rename Documents UI tab to **Files**; add SF Symbol icons to all four section tabs (iPhone horizontal + iPad vertical list) — **Traces**: FR-NAV-01, AC-HOME-11, AC-A11Y-02
-- [x] T021c [P] [US-ADMIN-01] iPad: **All Homes** navigation from home detail back to dashboard (sidebar not persistent home picker) — **Traces**: AC-HOME-10, FR-NAV-01
+- [x] T018 [US-ADMIN-01] Home create/edit form + validation in `ios/HomesFlow/Features/HomeSetup/` — **Carries**: AC-HOME-01, AC-HOME-02, FR-HOME-01
+- [x] T019 [US-ADMIN-01] Home photo pick + upload to Supabase Storage — **Carries**: AC-HOME-01, AC-HOME-08, FR-HOME-01 — *sync-before-upload*
+- [x] T019a [P] [US-ADMIN-01] Home photo display optimization: resize on upload, disk/memory cache, signed-URL reuse, throttled dashboard prefetch (max 2 concurrent) in `ios/HomesFlow/Core/Storage/` — **Carries**: AC-HOME-06, AC-HOME-07, FR-HOME-01, NFR-PERF-01
+- [x] T020 [US-ADMIN-01] Home edit offline + sync conflict (timestamp wins + activity log) — **Carries**: AC-HOME-03, AC-SYNC-01, FR-LOG-01 — *HomeConflictResolver + merge; full offline E2E pending*
+- [x] T021 [P] [US-ADMIN-01] Home detail full-bleed photo hero header + tab bar shell (Procedures | Contacts | Documents | People) — **Carries**: FR-HOME-01 — *superseded by T021a–b*
+- [x] T021a [P] [US-ADMIN-01] iPad home detail: compact left-column hero + vertical icon tabs; trailing area three-panel (list | detail) for **all** sections — **Carries**: FR-NAV-01, AC-HOME-09, AC-HOME-10 — *ContactsView, FilesView, MembersView split shells*
+- [x] T021b [P] [US-ADMIN-01] Rename Documents UI tab to **Files**; add SF Symbol icons to all four section tabs (iPhone horizontal + iPad vertical list) — **Carries**: FR-NAV-01, AC-HOME-11, AC-A11Y-02
+- [x] T021c [P] [US-ADMIN-01] iPad: **All Homes** navigation from home detail back to dashboard (sidebar not persistent home picker) — **Carries**: AC-HOME-10, FR-NAV-01
 
 ### Tests
 
-- [ ] T022 [P] [US-ADMIN-01] Unit test `test_AC_HOME_01_valid_home_created` — **Traces**: AC-HOME-01 — *validator only; integration test pending*
-- [x] T023 [P] [US-ADMIN-01] Unit test `test_AC_HOME_02_invalid_home_rejected` — **Traces**: AC-HOME-02
-- [x] T024 [US-ADMIN-01] Unit test `test_AC_HOME_03_offline_edit_conflict_logged` — **Traces**: AC-HOME-03 — *HomeConflictResolverTests; activity log integration pending*
-- [x] T024a [P] [US-ADMIN-01] Unit test `test_AC_HOME_06_upload_resizes_before_storage` — **Traces**: AC-HOME-06 — *HomePhotoTests*
-- [x] T024b [P] [US-ADMIN-01] Unit test `test_AC_HOME_07_hero_renders_from_local_cache` — **Traces**: AC-HOME-07 — *HomePhotoTests: memory + disk layers*
-- [x] T024c [P] [US-ADMIN-01] Unit test `test_AC_HOME_08_photo_blocked_until_home_synced` — **Traces**: AC-HOME-08 — *HomePhotoSyncGate extracted from HomeRepository*
-- [ ] T024d [P] [US-ADMIN-01] Snapshot or UI test: iPad home detail trailing column has no hero/segmented tabs — **Traces**: AC-HOME-09 — *deferred: needs snapshot/XCUITest infra; manual iPad pass until then*
-- [ ] T024e [P] [US-ADMIN-01] Snapshot or UI test: iPad leading column shows compact home hero + vertical icon section tabs — **Traces**: AC-HOME-10 — *deferred: needs snapshot/XCUITest infra; manual iPad pass until then*
-- [ ] T024f [P] [US-ADMIN-01] UI test: Contacts, Files, and People sections use the three-panel layout on iPad — **Traces**: AC-HOME-11 — *deferred: needs snapshot/XCUITest infra; manual iPad pass until then*
+- [ ] T022 [P] [US-ADMIN-01] Unit test `test_AC_HOME_01_valid_home_created` — **Carries**: AC-HOME-01 — *validator only; integration test pending*
+- [x] T023 [P] [US-ADMIN-01] Unit test `test_AC_HOME_02_invalid_home_rejected` — **Carries**: AC-HOME-02
+- [x] T024 [US-ADMIN-01] Unit test `test_AC_HOME_03_offline_edit_conflict_logged` — **Carries**: AC-HOME-03 — *HomeConflictResolverTests; activity log integration pending*
+- [x] T024a [P] [US-ADMIN-01] Unit test `test_AC_HOME_06_upload_resizes_before_storage` — **Carries**: AC-HOME-06 — *HomePhotoTests*
+- [x] T024b [P] [US-ADMIN-01] Unit test `test_AC_HOME_07_hero_renders_from_local_cache` — **Carries**: AC-HOME-07 — *HomePhotoTests: memory + disk layers*
+- [x] T024c [P] [US-ADMIN-01] Unit test `test_AC_HOME_08_photo_blocked_until_home_synced` — **Carries**: AC-HOME-08 — *HomePhotoSyncGate extracted from HomeRepository*
+- [ ] T024d [P] [US-ADMIN-01] Snapshot or UI test: iPad home detail trailing column has no hero/segmented tabs — **Carries**: AC-HOME-09 — *deferred: needs snapshot/XCUITest infra; manual iPad pass until then*
+- [ ] T024e [P] [US-ADMIN-01] Snapshot or UI test: iPad leading column shows compact home hero + vertical icon section tabs — **Carries**: AC-HOME-10 — *deferred: needs snapshot/XCUITest infra; manual iPad pass until then*
+- [ ] T024f [P] [US-ADMIN-01] UI test: Contacts, Files, and People sections use the three-panel layout on iPad — **Carries**: AC-HOME-11 — *deferred: needs snapshot/XCUITest infra; manual iPad pass until then*
 
 ---
 
@@ -111,21 +111,21 @@ Partial deliverables documented in [dev-notes.md](./dev-notes.md). **Do not** en
 
 ### Implementation
 
-- [x] T025 [US-ADMIN-02] Invite flow: create/revoke invite token, share invite link in `ios/HomesFlow/Features/Members/` — **Traces**: AC-USER-01, AC-USER-02, AC-USER-07, FR-GUEST-02, FR-USER-02 — *share sheet; no email/SMS send*
-- [x] T026 [US-ADMIN-02] Accept invite → create membership with role — **Traces**: AC-USER-01, AC-USER-07 — *paste token + RPC; deep link pending*
-- [ ] T027 [US-ADMIN-02] Offline invite conflict resolution — **Traces**: AC-USER-03, AC-SYNC-01
-- [x] T028 [US-ADMIN-03] Members list (People tab) + role assignment UI — **Traces**: AC-USER-04, AC-USER-05, AC-USER-06, FR-USER-02
-- [x] T029 [US-ADMIN-03] Role change sync + audit entry for prior role — **Traces**: AC-USER-06, FR-LOG-01 — *activity log append; concurrent conflict partial*
+- [x] T025 [US-ADMIN-02] Invite flow: create/revoke invite token, share invite link in `ios/HomesFlow/Features/Members/` — **Carries**: AC-USER-01, AC-USER-02, AC-USER-07, FR-GUEST-02, FR-USER-02 — *share sheet; no email/SMS send*
+- [x] T026 [US-ADMIN-02] Accept invite → create membership with role — **Carries**: AC-USER-01, AC-USER-07 — *paste token + RPC; deep link pending*
+- [ ] T027 [US-ADMIN-02] Offline invite conflict resolution — **Carries**: AC-USER-03, AC-SYNC-01
+- [x] T028 [US-ADMIN-03] Members list (People tab) + role assignment UI — **Carries**: AC-USER-04, AC-USER-05, AC-USER-06, FR-USER-02
+- [x] T029 [US-ADMIN-03] Role change sync + audit entry for prior role — **Carries**: AC-USER-06, FR-LOG-01 — *activity log append; concurrent conflict partial*
 
 ### Tests
 
-- [x] T030 [P] [US-ADMIN-02] Unit test `test_AC_USER_01_invite_accepted_grants_role` — **Traces**: AC-USER-01 — *MemberInviteTests over InvitePolicy*
-- [x] T031 [P] [US-ADMIN-02] Unit test `test_AC_USER_02_revoked_token_invalid` — **Traces**: AC-USER-02 — *MemberInviteTests; server enforcement in accept_invite RPC*
-- [x] T032 [US-ADMIN-03] Unit test `test_AC_USER_04_edit_role_can_modify_procedures` — **Traces**: AC-USER-04 — *MemberInviteTests; exposed PermissionService visibility gap on create/update/delete, fixed*
-- [x] T033 [US-ADMIN-03] Unit test `test_AC_USER_05_guest_role_read_only` — **Traces**: AC-USER-05 — *GuestTests*
-- [ ] T033a [P] [US-ADMIN-02] Unit test `test_AC_USER_03_offline_invite_conflict` — **Traces**: AC-USER-03
-- [x] T033b [US-ADMIN-03] Unit test `test_AC_USER_06_concurrent_role_change_audit` — **Traces**: AC-USER-06 — *MemberInviteTests over RoleChangeAudit + MembershipMerge*
-- [x] T033c [P] [US-ADMIN-02] Unit test `test_AC_USER_07_paste_token_accepts_invite` — **Traces**: AC-USER-07 — *MemberInviteTests; AcceptInviteView now accepts full invite links via InvitePolicy.extractToken*
+- [x] T030 [P] [US-ADMIN-02] Unit test `test_AC_USER_01_invite_accepted_grants_role` — **Carries**: AC-USER-01 — *MemberInviteTests over InvitePolicy*
+- [x] T031 [P] [US-ADMIN-02] Unit test `test_AC_USER_02_revoked_token_invalid` — **Carries**: AC-USER-02 — *MemberInviteTests; server enforcement in accept_invite RPC*
+- [x] T032 [US-ADMIN-03] Unit test `test_AC_USER_04_edit_role_can_modify_procedures` — **Carries**: AC-USER-04 — *MemberInviteTests; exposed PermissionService visibility gap on create/update/delete, fixed*
+- [x] T033 [US-ADMIN-03] Unit test `test_AC_USER_05_guest_role_read_only` — **Carries**: AC-USER-05 — *GuestTests*
+- [ ] T033a [P] [US-ADMIN-02] Unit test `test_AC_USER_03_offline_invite_conflict` — **Carries**: AC-USER-03
+- [x] T033b [US-ADMIN-03] Unit test `test_AC_USER_06_concurrent_role_change_audit` — **Carries**: AC-USER-06 — *MemberInviteTests over RoleChangeAudit + MembershipMerge*
+- [x] T033c [P] [US-ADMIN-02] Unit test `test_AC_USER_07_paste_token_accepts_invite` — **Carries**: AC-USER-07 — *MemberInviteTests; AcceptInviteView now accepts full invite links via InvitePolicy.extractToken*
 
 ---
 
@@ -135,17 +135,17 @@ Partial deliverables documented in [dev-notes.md](./dev-notes.md). **Do not** en
 
 ### Implementation
 
-- [x] T034 [NFR-OFFL-01] Network reachability → trigger `SyncEngine.run()` on reconnect in `ios/HomesFlow/Core/Sync/` — **Traces**: AC-SYNC-01
-- [ ] T035 [NFR-OFFL-01] Field-level merge for non-conflicting offline edits — **Traces**: AC-SYNC-02 — *deferred post-MVP (2026-07-03 conflict model decision); pairs with version vectors*
-- [x] T036 [NFR-OFFL-01] Stale-permission revert + user-facing error — **Traces**: AC-SYNC-03 — *revert + SyncNotification*
-- [x] T037 [P] [NFR-OFFL-01] In-app conflict/overwrite notification banners + pending-sync dashboard indicators — **Traces**: AC-SYNC-01, AC-SYNC-04, AC-PROC-03, AC-HOME-05 — *dashboard sync banners, cloud icons, pull-to-refresh*
+- [x] T034 [NFR-OFFL-01] Network reachability → trigger `SyncEngine.run()` on reconnect in `ios/HomesFlow/Core/Sync/` — **Carries**: AC-SYNC-01
+- [ ] T035 [NFR-OFFL-01] Field-level merge for non-conflicting offline edits — **Carries**: AC-SYNC-02 — *deferred post-MVP (2026-07-03 conflict model decision); pairs with version vectors*
+- [x] T036 [NFR-OFFL-01] Stale-permission revert + user-facing error — **Carries**: AC-SYNC-03 — *revert + SyncNotification*
+- [x] T037 [P] [NFR-OFFL-01] In-app conflict/overwrite notification banners + pending-sync dashboard indicators — **Carries**: AC-SYNC-01, AC-SYNC-04, AC-PROC-03, AC-HOME-05 — *dashboard sync banners, cloud icons, pull-to-refresh*
 
 ### Tests
 
-- [x] T038 [P] [NFR-OFFL-01] Unit test `test_AC_SYNC_01_offline_overwrite_notifies_loser` — **Traces**: AC-SYNC-01 — *SyncConflictMatrixTests over OverwriteNotificationPolicy; SyncEngine home merge now posts loser notification (steps/providers already did)*
-- [ ] T039 [P] [NFR-OFFL-01] Unit test `test_AC_SYNC_02_disjoint_fields_merge` — **Traces**: AC-SYNC-02 — *deferred post-MVP with T035*
-- [x] T040 [NFR-OFFL-01] Unit test `test_AC_SYNC_03_stale_permission_reverts` — **Traces**: AC-SYNC-03 — *covered by SyncConflictMatrixTests.test_AC_SYNC_03_permission_denied_revert_matrix over PermissionRevertPolicy*
-- [x] T040a [P] [NFR-OFFL-01] Unit test `test_AC_SYNC_04_pending_sync_visible_on_dashboard` — **Traces**: AC-SYNC-04 — *SyncIndicatorTests over SyncIndicatorPolicy*
+- [x] T038 [P] [NFR-OFFL-01] Unit test `test_AC_SYNC_01_offline_overwrite_notifies_loser` — **Carries**: AC-SYNC-01 — *SyncConflictMatrixTests over OverwriteNotificationPolicy; SyncEngine home merge now posts loser notification (steps/providers already did)*
+- [ ] T039 [P] [NFR-OFFL-01] Unit test `test_AC_SYNC_02_disjoint_fields_merge` — **Carries**: AC-SYNC-02 — *deferred post-MVP with T035*
+- [x] T040 [NFR-OFFL-01] Unit test `test_AC_SYNC_03_stale_permission_reverts` — **Carries**: AC-SYNC-03 — *covered by SyncConflictMatrixTests.test_AC_SYNC_03_permission_denied_revert_matrix over PermissionRevertPolicy*
+- [x] T040a [P] [NFR-OFFL-01] Unit test `test_AC_SYNC_04_pending_sync_visible_on_dashboard` — **Carries**: AC-SYNC-04 — *SyncIndicatorTests over SyncIndicatorPolicy*
 
 **Checkpoint**: P1 stories independently testable. ⏳ *Pending T027, sync tests, Procedures for full demo*
 
@@ -157,27 +157,27 @@ Partial deliverables documented in [dev-notes.md](./dev-notes.md). **Do not** en
 
 ### Implementation
 
-- [x] T041 [US-EDIT-01] Procedures list with progress (e.g. 2/6) in `ios/HomesFlow/Features/Procedures/` — **Traces**: FR-PROC-01, FR-PROC-02
-- [x] T042 [US-EDIT-01] Procedure detail: step checklist, status toggle, N/A option — **Traces**: FR-PROC-02, AC-PROC-01
-- [x] T043 [US-EDIT-01] Step notes + photo attach (Storage) — **Traces**: FR-PROC-03
-- [x] T044 [US-EDIT-01] Block step update when permission insufficient — **Traces**: AC-PROC-02
-- [x] T045 [US-EDIT-01] Offline step conflict + notification — **Traces**: AC-PROC-03, AC-SYNC-01
-- [x] T046 [P] [US-EDIT-01] Recent activity section on procedure detail — **Traces**: FR-LOG-01, AC-PROC-01
-- [x] T047 [P] [US-EDIT-01] iPad: procedure list + detail columns — **Traces**: NFR-PERF-01
-- [x] T047a [US-EDIT-01] Step structure sync: create, rename, delete, reorder in `ProcedureRepository` + `SyncEngine` — **Traces**: FR-PROC-02, AC-PROC-06
-- [x] T047b [US-EDIT-01] Long-press step context menu (rename, delete, move up/down) + Add step on Steps section — **Traces**: AC-PROC-04, AC-PROC-05
-- [x] T047c [US-EDIT-01] Hide step structure controls for Guest (read-only) — **Traces**: AC-PROC-07, AC-GUEST-04
-- [x] T047d [US-EDIT-01] Step row UI: notes below title, pencil Edit, tappable photo preview, ellipsis rightmost — **Traces**: AC-PROC-08
+- [x] T041 [US-EDIT-01] Procedures list with progress (e.g. 2/6) in `ios/HomesFlow/Features/Procedures/` — **Carries**: FR-PROC-01, FR-PROC-02
+- [x] T042 [US-EDIT-01] Procedure detail: step checklist, status toggle, N/A option — **Carries**: FR-PROC-02, AC-PROC-01
+- [x] T043 [US-EDIT-01] Step notes + photo attach (Storage) — **Carries**: FR-PROC-03
+- [x] T044 [US-EDIT-01] Block step update when permission insufficient — **Carries**: AC-PROC-02
+- [x] T045 [US-EDIT-01] Offline step conflict + notification — **Carries**: AC-PROC-03, AC-SYNC-01
+- [x] T046 [P] [US-EDIT-01] Recent activity section on procedure detail — **Carries**: FR-LOG-01, AC-PROC-01
+- [x] T047 [P] [US-EDIT-01] iPad: procedure list + detail columns — **Carries**: NFR-PERF-01
+- [x] T047a [US-EDIT-01] Step structure sync: create, rename, delete, reorder in `ProcedureRepository` + `SyncEngine` — **Carries**: FR-PROC-02, AC-PROC-06
+- [x] T047b [US-EDIT-01] Long-press step context menu (rename, delete, move up/down) + Add step on Steps section — **Carries**: AC-PROC-04, AC-PROC-05
+- [x] T047c [US-EDIT-01] Hide step structure controls for Guest (read-only) — **Carries**: AC-PROC-07, AC-GUEST-04
+- [x] T047d [US-EDIT-01] Step row UI: notes below title, pencil Edit, tappable photo preview, ellipsis rightmost — **Carries**: AC-PROC-08
 
 ### Tests
 
-- [x] T048 [P] [US-EDIT-01] Unit test `test_AC_PROC_01_step_complete_creates_log` — **Traces**: AC-PROC-01 — *ProcedureAggregatorTests*
-- [x] T049 [P] [US-EDIT-01] Unit test `test_AC_PROC_02_permission_denied_blocks_update` — **Traces**: AC-PROC-02
-- [x] T050 [US-EDIT-01] Unit test `test_AC_PROC_03_offline_step_conflict` — **Traces**: AC-PROC-03
-- [x] T050a [P] [US-EDIT-01] Unit test `test_AC_PROC_04_manager_can_manage_step_structure` — **Traces**: AC-PROC-04, AC-PROC-05 — *StepStructureTests*
-- [x] T050b [P] [US-EDIT-01] Unit test `test_AC_PROC_06_step_structure_change_logged` — **Traces**: AC-PROC-06 — *StepStructureTests*
-- [x] T050c [P] [US-EDIT-01] Unit test `test_AC_PROC_07_guest_no_step_structure_controls` — **Traces**: AC-PROC-07 — *StepStructureTests*
-- [x] T050d [P] [US-EDIT-01] Unit test `test_AC_PROC_08_photo_indicator_and_edit_controls` — **Traces**: AC-PROC-08 — *StepRowPresentationTests over StepRowPresentation (indicator, edit gating, strike-through, tap toggle); XCUITest of preview sheet deferred with T024d–f UI-test infra*
+- [x] T048 [P] [US-EDIT-01] Unit test `test_AC_PROC_01_step_complete_creates_log` — **Carries**: AC-PROC-01 — *ProcedureAggregatorTests*
+- [x] T049 [P] [US-EDIT-01] Unit test `test_AC_PROC_02_permission_denied_blocks_update` — **Carries**: AC-PROC-02
+- [x] T050 [US-EDIT-01] Unit test `test_AC_PROC_03_offline_step_conflict` — **Carries**: AC-PROC-03
+- [x] T050a [P] [US-EDIT-01] Unit test `test_AC_PROC_04_manager_can_manage_step_structure` — **Carries**: AC-PROC-04, AC-PROC-05 — *StepStructureTests*
+- [x] T050b [P] [US-EDIT-01] Unit test `test_AC_PROC_06_step_structure_change_logged` — **Carries**: AC-PROC-06 — *StepStructureTests*
+- [x] T050c [P] [US-EDIT-01] Unit test `test_AC_PROC_07_guest_no_step_structure_controls` — **Carries**: AC-PROC-07 — *StepStructureTests*
+- [x] T050d [P] [US-EDIT-01] Unit test `test_AC_PROC_08_photo_indicator_and_edit_controls` — **Carries**: AC-PROC-08 — *StepRowPresentationTests over StepRowPresentation (indicator, edit gating, strike-through, tap toggle); XCUITest of preview sheet deferred with T024d–f UI-test infra*
 
 ---
 
@@ -187,15 +187,15 @@ Partial deliverables documented in [dev-notes.md](./dev-notes.md). **Do not** en
 
 ### Implementation
 
-- [x] T051 [US-EDIT-02] Service provider list + search in `ios/HomesFlow/Features/Providers/` (UI tab: Contacts) — **Traces**: FR-HOME-02, AC-HOME-04
-- [x] T052 [US-EDIT-02] Provider create/edit form (company, type, phone, website, hours, notes) — **Traces**: AC-HOME-04
-- [x] T053 [US-EDIT-02] Provider edit vs delete sync conflict — **Traces**: AC-HOME-05, AC-SYNC-01
-- [x] T054 [P] [US-EDIT-02] Tap phone → `tel:` link — **Traces**: FR-HOME-02
+- [x] T051 [US-EDIT-02] Service provider list + search in `ios/HomesFlow/Features/Providers/` (UI tab: Contacts) — **Carries**: FR-HOME-02, AC-HOME-04
+- [x] T052 [US-EDIT-02] Provider create/edit form (company, type, phone, website, hours, notes) — **Carries**: AC-HOME-04
+- [x] T053 [US-EDIT-02] Provider edit vs delete sync conflict — **Carries**: AC-HOME-05, AC-SYNC-01
+- [x] T054 [P] [US-EDIT-02] Tap phone → `tel:` link — **Carries**: FR-HOME-02
 
 ### Tests
 
-- [x] T055 [P] [US-EDIT-02] Unit test `test_AC_HOME_04_provider_edit_propagates` — **Traces**: AC-HOME-04 — *ProviderTests*
-- [x] T056 [US-EDIT-02] Unit test `test_AC_HOME_05_delete_wins_over_edit` — **Traces**: AC-HOME-05 — *ProviderTests*
+- [x] T055 [P] [US-EDIT-02] Unit test `test_AC_HOME_04_provider_edit_propagates` — **Carries**: AC-HOME-04 — *ProviderTests*
+- [x] T056 [US-EDIT-02] Unit test `test_AC_HOME_05_delete_wins_over_edit` — **Carries**: AC-HOME-05 — *ProviderTests*
 
 ---
 
@@ -205,20 +205,20 @@ Partial deliverables documented in [dev-notes.md](./dev-notes.md). **Do not** en
 
 ### Implementation
 
-- [x] T057 [US-GUEST-01] Visibility filtering on providers, documents, procedures — **Traces**: AC-GUEST-01, FR-GUEST-01 — *repository filters + guest tabs; documents via DocumentRepository*
-- [x] T058 [US-GUEST-01] Navigation guard: deny restricted content with message — **Traces**: AC-GUEST-02 — *GuestAccessDeniedView + access state checks*
-- [x] T059 [US-GUEST-01] Offline visibility sync — **Traces**: AC-GUEST-03 — *timestamp-wins procedure/provider merge*
-- [x] T060 [US-GUEST-02] Guest procedure detail read-only (no status edits) — **Traces**: AC-GUEST-04 — *canEdit false + footer hint*
-- [x] T061 [US-GUEST-02] Reject guest step status change + audit unauthorized attempt — **Traces**: AC-GUEST-05, FR-LOG-01 — *permission gate + activity log*
+- [x] T057 [US-GUEST-01] Visibility filtering on providers, documents, procedures — **Carries**: AC-GUEST-01, FR-GUEST-01 — *repository filters + guest tabs; documents via DocumentRepository*
+- [x] T058 [US-GUEST-01] Navigation guard: deny restricted content with message — **Carries**: AC-GUEST-02 — *GuestAccessDeniedView + access state checks*
+- [x] T059 [US-GUEST-01] Offline visibility sync — **Carries**: AC-GUEST-03 — *timestamp-wins procedure/provider merge*
+- [x] T060 [US-GUEST-02] Guest procedure detail read-only (no status edits) — **Carries**: AC-GUEST-04 — *canEdit false + footer hint*
+- [x] T061 [US-GUEST-02] Reject guest step status change + audit unauthorized attempt — **Carries**: AC-GUEST-05, FR-LOG-01 — *permission gate + activity log*
 
 ### Tests
 
-- [x] T062 [P] [US-GUEST-01] Unit test `test_AC_GUEST_01_guest_fields_only` — **Traces**: AC-GUEST-01 — *GuestTests*
-- [x] T063 [P] [US-GUEST-02] Unit test `test_AC_GUEST_05_unauthorized_step_rejected` — **Traces**: AC-GUEST-05 — *PermissionServiceTests*
-- [x] T063a [P] [US-GUEST-01] Unit test `test_AC_GUEST_02_restricted_deep_link_denied` — **Traces**: AC-GUEST-02 — *GuestTests*
-- [x] T063b [P] [US-GUEST-01] Unit test `test_AC_GUEST_03_offline_visibility_sync` — **Traces**: AC-GUEST-03 — *GuestTests*
-- [x] T063c [P] [US-GUEST-02] Unit test `test_AC_GUEST_04_guest_procedure_read_only` — **Traces**: AC-GUEST-04 — *GuestTests*
-- [ ] T064 [US-GUEST-01] XCUITest: guest cannot edit provider — **Traces**: AC-GUEST-01, SC-03
+- [x] T062 [P] [US-GUEST-01] Unit test `test_AC_GUEST_01_guest_fields_only` — **Carries**: AC-GUEST-01 — *GuestTests*
+- [x] T063 [P] [US-GUEST-02] Unit test `test_AC_GUEST_05_unauthorized_step_rejected` — **Carries**: AC-GUEST-05 — *PermissionServiceTests*
+- [x] T063a [P] [US-GUEST-01] Unit test `test_AC_GUEST_02_restricted_deep_link_denied` — **Carries**: AC-GUEST-02 — *GuestTests*
+- [x] T063b [P] [US-GUEST-01] Unit test `test_AC_GUEST_03_offline_visibility_sync` — **Carries**: AC-GUEST-03 — *GuestTests*
+- [x] T063c [P] [US-GUEST-02] Unit test `test_AC_GUEST_04_guest_procedure_read_only` — **Carries**: AC-GUEST-04 — *GuestTests*
+- [ ] T064 [US-GUEST-01] XCUITest: guest cannot edit provider — **Carries**: AC-GUEST-01, SC-03
 
 ---
 
@@ -228,33 +228,33 @@ Partial deliverables documented in [dev-notes.md](./dev-notes.md). **Do not** en
 
 ### Implementation
 
-- [x] T065 [FR-HOME-03] Files tab: documents list + upload + visibility in `ios/HomesFlow/Features/Documents/` — **Traces**: FR-HOME-03, AC-GUEST-01, AC-HOME-11
-- [x] T065a [FR-HOME-03] Standardize section add actions on the Contacts pattern (plus icon, primary action, accessible label) across Contacts, Files, People — **Traces**: AC-HOME-12
-- [x] T065b [FR-HOME-03] File detail: Preview via system Quick Look (zoom, PDF, media); summary + metadata and actions below — **Traces**: AC-HOME-13
-- [x] T065c [FR-HOME-03] File sources: camera capture, photo library, and file browser feeding one metadata flow — **Traces**: AC-HOME-14
-- [x] T065e [FR-HOME-03] Stream file download to temp for Quick Look preview (no full in-memory buffer) — **Traces**: AC-HOME-13, NFR-PERF-01
-- [x] T065d [P] [FR-HOME-03] Tests for section add parity, file preview, and file sources — **Traces**: AC-HOME-12, AC-HOME-13, AC-HOME-14
-- [x] T066 [P] [FR-NOTIF-01] Settings screen: account, notification toggle disabled (“Coming soon”) in `ios/HomesFlow/Features/Settings/` — **Traces**: FR-NOTIF-01 — *gear icon on dashboard; email, sign out with confirmation, version*
-- [x] T066a [P] Accessibility baseline: Dynamic Type layouts, VoiceOver labels on section tabs, Reduce Motion, 44pt targets across dashboard/home/procedures — **Traces**: NFR-A11Y-01, AC-A11Y-01, AC-A11Y-02, AC-A11Y-03 — *AccessibilityBaseline helper: scaled hero heights, 44pt step actions, step status VoiceOver value; manual VoiceOver pass remains T069a*
-- [x] T067 [P] Sign out clears session — **Traces**: FR-AUTH-01 — *moved to Settings screen (T066) with confirmation dialog*
-- [x] T068 Owner revoke member access → lose access on next sync — **Traces**: FR-USER-02 — *MemberRemovalPolicy + removeMember; swipe + detail actions with confirmation; MemberRemovalTests*
+- [x] T065 [FR-HOME-03] Files tab: documents list + upload + visibility in `ios/HomesFlow/Features/Documents/` — **Carries**: FR-HOME-03, AC-GUEST-01, AC-HOME-11
+- [x] T065a [FR-HOME-03] Standardize section add actions on the Contacts pattern (plus icon, primary action, accessible label) across Contacts, Files, People — **Carries**: AC-HOME-12
+- [x] T065b [FR-HOME-03] File detail: Preview via system Quick Look (zoom, PDF, media); summary + metadata and actions below — **Carries**: AC-HOME-13
+- [x] T065c [FR-HOME-03] File sources: camera capture, photo library, and file browser feeding one metadata flow — **Carries**: AC-HOME-14
+- [x] T065e [FR-HOME-03] Stream file download to temp for Quick Look preview (no full in-memory buffer) — **Carries**: AC-HOME-13, NFR-PERF-01
+- [x] T065d [P] [FR-HOME-03] Tests for section add parity, file preview, and file sources — **Carries**: AC-HOME-12, AC-HOME-13, AC-HOME-14
+- [x] T066 [P] [FR-NOTIF-01] Settings screen: account, notification toggle disabled (“Coming soon”) in `ios/HomesFlow/Features/Settings/` — **Carries**: FR-NOTIF-01 — *gear icon on dashboard; email, sign out with confirmation, version*
+- [x] T066a [P] Accessibility baseline: Dynamic Type layouts, VoiceOver labels on section tabs, Reduce Motion, 44pt targets across dashboard/home/procedures — **Carries**: NFR-A11Y-01, AC-A11Y-01, AC-A11Y-02, AC-A11Y-03 — *AccessibilityBaseline helper: scaled hero heights, 44pt step actions, step status VoiceOver value; manual VoiceOver pass remains T069a*
+- [x] T067 [P] Sign out clears session — **Carries**: FR-AUTH-01 — *moved to Settings screen (T066) with confirmation dialog*
+- [x] T068 Owner revoke member access → lose access on next sync — **Carries**: FR-USER-02 — *MemberRemovalPolicy + removeMember; swipe + detail actions with confirmation; MemberRemovalTests*
 
 ### Tests
 
-- [ ] T069 [P] XCUITest end-to-end: sign-in → create home → invite → update step → guest read-only — **Traces**: SC-01, SC-02, SC-03
-- [ ] T069a [P] Manual accessibility pass: largest Dynamic Type + VoiceOver on dashboard, home sections, procedure checklist — **Traces**: AC-A11Y-01, AC-A11Y-02, AC-A11Y-03
+- [ ] T069 [P] XCUITest end-to-end: sign-in → create home → invite → update step → guest read-only — **Carries**: SC-01, SC-02, SC-03
+- [ ] T069a [P] Manual accessibility pass: largest Dynamic Type + VoiceOver on dashboard, home sections, procedure checklist — **Carries**: AC-A11Y-01, AC-A11Y-02, AC-A11Y-03
 
 ---
 
 ## Phase 11: Hardening
 
-- [ ] T070 Run `/speckit.analyze` and fix all traceability violations — **Traces**: constitution traceability article
-- [ ] T071 [P] RLS integration tests against contracts/rls-permissions.md — **Traces**: FR-USER-01, FR-GUEST-01
-- [x] T072 [P] Sync conflict matrix — target SC-04 (95% scripted scenarios) — **Traces**: SC-04, AC-SYNC-01, AC-SYNC-02, AC-SYNC-03, NFR-SYNC-01 — *SyncConflictMatrixTests: timestamp-wins, delete-wins, idempotency, permission revert; AC-SYNC-02 field-merge scenarios pending T035*
-- [ ] T072a [P] Performance smoke: screen load & sync latency baselines — **Traces**: NFR-PERF-01, NFR-SYNC-01
-- [ ] T072b [P] Document NFR-SCALE-01 architecture assumptions in plan.md (no load test in MVP) — **Traces**: NFR-SCALE-01
-- [ ] T072c [P] Enable Xcode crash report collection / document NFR-REL-01 monitoring path — **Traces**: NFR-REL-01
-- [x] T073 Update quickstart.md with any dev-setup deltas discovered during implement — **Traces**: plan Phase 0 (infrastructure)
+- [ ] T070 Run `/speckit.analyze` and fix all traceability violations — **Carries**: constitution traceability article
+- [ ] T071 [P] RLS integration tests against contracts/rls-permissions.md — **Carries**: FR-USER-01, FR-GUEST-01
+- [x] T072 [P] Sync conflict matrix — target SC-04 (95% scripted scenarios) — **Carries**: SC-04, AC-SYNC-01, AC-SYNC-02, AC-SYNC-03, NFR-SYNC-01 — *SyncConflictMatrixTests: timestamp-wins, delete-wins, idempotency, permission revert; AC-SYNC-02 field-merge scenarios pending T035*
+- [ ] T072a [P] Performance smoke: screen load & sync latency baselines — **Carries**: NFR-PERF-01, NFR-SYNC-01
+- [ ] T072b [P] Document NFR-SCALE-01 architecture assumptions in plan.md (no load test in MVP) — **Carries**: NFR-SCALE-01
+- [ ] T072c [P] Enable Xcode crash report collection / document NFR-REL-01 monitoring path — **Carries**: NFR-REL-01
+- [x] T073 Update quickstart.md with any dev-setup deltas discovered during implement — **Carries**: plan Phase 0 (infrastructure)
 
 ---
 
@@ -262,12 +262,12 @@ Partial deliverables documented in [dev-notes.md](./dev-notes.md). **Do not** en
 
 **Goal**: Data-type-aware conflict handling replacing blanket timestamp-wins — **NFR-OFFL-01** (see spec User Story 6 evolution note)
 
-- [x] T074 [NFR-OFFL-01] Protect terminal step statuses: sync never silently regresses Complete/N/A; surface conflicting update — **Traces**: AC-SYNC-05 — *StepStatusConflictPolicy + ProcedureRepository merge; activity log + in-app notification*
-- [x] T074a [P] [NFR-OFFL-01] Unit test `test_AC_SYNC_05_terminal_status_never_silently_regressed` — **Traces**: AC-SYNC-05 — *StepStatusConflictPolicyTests*
-- [x] T075 [NFR-OFFL-01] Auto-resolve status conflicts (timestamp, subject to AC-SYNC-05) + notify losing user with activity-log reference and re-apply guidance — no resolution UI (2026-07-03 decision) — **Traces**: AC-SYNC-06 — *StepStatusConflictPolicy auto-resolve messages; resolveStepConflict + procedure merge*
-- [x] T075a [P] [NFR-OFFL-01] Unit test `test_AC_SYNC_06_losing_user_notified_with_reapply_guidance` — **Traces**: AC-SYNC-06 — *StepStatusConflictPolicyTests*
-- [x] T076 [NFR-OFFL-01] Connectivity-gate structural actions (step/procedure/provider CRUD, membership) when offline — **Traces**: AC-SYNC-07
-- [x] T076a [P] [NFR-OFFL-01] Unit test `test_AC_SYNC_07_structural_actions_blocked_offline` — **Traces**: AC-SYNC-07
+- [x] T074 [NFR-OFFL-01] Protect terminal step statuses: sync never silently regresses Complete/N/A; surface conflicting update — **Carries**: AC-SYNC-05 — *StepStatusConflictPolicy + ProcedureRepository merge; activity log + in-app notification*
+- [x] T074a [P] [NFR-OFFL-01] Unit test `test_AC_SYNC_05_terminal_status_never_silently_regressed` — **Carries**: AC-SYNC-05 — *StepStatusConflictPolicyTests*
+- [x] T075 [NFR-OFFL-01] Auto-resolve status conflicts (timestamp, subject to AC-SYNC-05) + notify losing user with activity-log reference and re-apply guidance — no resolution UI (2026-07-03 decision) — **Carries**: AC-SYNC-06 — *StepStatusConflictPolicy auto-resolve messages; resolveStepConflict + procedure merge*
+- [x] T075a [P] [NFR-OFFL-01] Unit test `test_AC_SYNC_06_losing_user_notified_with_reapply_guidance` — **Carries**: AC-SYNC-06 — *StepStatusConflictPolicyTests*
+- [x] T076 [NFR-OFFL-01] Connectivity-gate structural actions (step/procedure/provider CRUD, membership) when offline — **Carries**: AC-SYNC-07
+- [x] T076a [P] [NFR-OFFL-01] Unit test `test_AC_SYNC_07_structural_actions_blocked_offline` — **Carries**: AC-SYNC-07
 
 ---
 
@@ -281,19 +281,19 @@ Partial deliverables documented in [dev-notes.md](./dev-notes.md). **Do not** en
 
 ### Implementation
 
-- [x] T077 [FR-LOG-02] LogBookEntry model + migration + RLS (Owner/Manager read-write, Guest none) — **Traces**: FR-LOG-02, AC-LOG-06
-- [x] T078 [FR-LOG-02] Write household-scope log entry — **Traces**: AC-LOG-01
-- [x] T079 [FR-LOG-02] Write procedure-scope log entry from procedure detail — **Traces**: AC-LOG-02
-- [x] T080 [FR-LOG-02] Offline append-only log entry sync — **Traces**: AC-LOG-03
-- [x] T081 [FR-LOG-02] Grace-window editing (10 minutes from server receipt; immutable after) — **Traces**: AC-LOG-04
-- [x] T082 [FR-LOG-02] Unified chronological log view with scope filter — **Traces**: AC-LOG-05
-- [x] T083 [FR-LOG-02] Deny Guest access to Log Book including deep links — **Traces**: AC-LOG-06
+- [x] T077 [FR-LOG-02] LogBookEntry model + migration + RLS (Owner/Manager read-write, Guest none) — **Carries**: FR-LOG-02, AC-LOG-06
+- [x] T078 [FR-LOG-02] Write household-scope log entry — **Carries**: AC-LOG-01
+- [x] T079 [FR-LOG-02] Write procedure-scope log entry from procedure detail — **Carries**: AC-LOG-02
+- [x] T080 [FR-LOG-02] Offline append-only log entry sync — **Carries**: AC-LOG-03
+- [x] T081 [FR-LOG-02] Grace-window editing (10 minutes from server receipt; immutable after) — **Carries**: AC-LOG-04
+- [x] T082 [FR-LOG-02] Unified chronological log view with scope filter — **Carries**: AC-LOG-05
+- [x] T083 [FR-LOG-02] Deny Guest access to Log Book including deep links — **Carries**: AC-LOG-06
 
 ### Tests
 
-- [x] T084 [P] [FR-LOG-02] Unit tests `test_AC_LOG_01_household_entry_appears_in_log`, `test_AC_LOG_02_procedure_entry_attached_and_in_log` — **Traces**: AC-LOG-01, AC-LOG-02
-- [x] T085 [P] [FR-LOG-02] Unit tests `test_AC_LOG_03_offline_entry_syncs_append_only`, `test_AC_LOG_04_edit_only_within_grace_window` — **Traces**: AC-LOG-03, AC-LOG-04
-- [x] T086 [P] [FR-LOG-02] Unit tests `test_AC_LOG_05_unified_log_chronological_and_filterable`, `test_AC_LOG_06_guest_denied_log_access` — **Traces**: AC-LOG-05, AC-LOG-06
+- [x] T084 [P] [FR-LOG-02] Unit tests `test_AC_LOG_01_household_entry_appears_in_log`, `test_AC_LOG_02_procedure_entry_attached_and_in_log` — **Carries**: AC-LOG-01, AC-LOG-02
+- [x] T085 [P] [FR-LOG-02] Unit tests `test_AC_LOG_03_offline_entry_syncs_append_only`, `test_AC_LOG_04_edit_only_within_grace_window` — **Carries**: AC-LOG-03, AC-LOG-04
+- [x] T086 [P] [FR-LOG-02] Unit tests `test_AC_LOG_05_unified_log_chronological_and_filterable`, `test_AC_LOG_06_guest_denied_log_access` — **Carries**: AC-LOG-05, AC-LOG-06
 
 ---
 
@@ -301,10 +301,10 @@ Partial deliverables documented in [dev-notes.md](./dev-notes.md). **Do not** en
 
 **Goal**: PR-based delivery to `main` with the same gates that already run on push — no silent admin bypass; Sonar suppressions authoritative in git.
 
-- [ ] T087 [P] Enforce PR-only merge to `main`: branch protection requires pull request, `craft-gate` + `SonarCloud Code Analysis`, and disallow admin bypass — **Traces**: plan Phase 0 (infrastructure), NFR-SEC-01 — *script ready: `bash scripts/finish-phase-e.sh` (admin); run after this PR merges and CI Sonar is green*
-- [x] T088 [P] Add `.github/pull_request_template.md`: task ID(s), `Traces:` AC/FR IDs, test evidence, Gate 2 status — **Traces**: plan Phase 0 (infrastructure) — *golden thread visible at review time*
-- [x] T089 [P] Run SonarCloud from CI (`.github/workflows/ci.yml` or dedicated job) so `sonar-project.properties` multicriteria suppressions apply; retire automatic-analysis-only suppressions where redundant — **Traces**: plan Phase 0 (infrastructure) — *job `sonar` + `SONAR_TOKEN`; disable Automatic Analysis in SonarCloud UI after first green CI scan*
-- [x] T090 [P] Document delivery workflow in `craft-conventions.md` + README: feature branch → PR → green gates → merge; link `finish-phase-e.sh` for protection setup — **Traces**: plan Phase 0 (infrastructure)
+- [ ] T087 [P] Enforce PR-only merge to `main`: branch protection requires pull request, `craft-gate` + `SonarCloud Code Analysis`, and disallow admin bypass — **Carries**: plan Phase 0 (infrastructure), NFR-SEC-01 — *script ready: `bash scripts/finish-phase-e.sh` (admin); run after this PR merges and CI Sonar is green*
+- [x] T088 [P] Add `.github/pull_request_template.md`: task ID(s), `Traces:` AC/FR IDs, test evidence, Gate 2 status — **Carries**: plan Phase 0 (infrastructure) — *golden thread visible at review time*
+- [x] T089 [P] Run SonarCloud from CI (`.github/workflows/ci.yml` or dedicated job) so `sonar-project.properties` multicriteria suppressions apply; retire automatic-analysis-only suppressions where redundant — **Carries**: plan Phase 0 (infrastructure) — *job `sonar` + `SONAR_TOKEN`; disable Automatic Analysis in SonarCloud UI after first green CI scan*
+- [x] T090 [P] Document delivery workflow in `craft-conventions.md` + README: feature branch → PR → green gates → merge; link `finish-phase-e.sh` for protection setup — **Carries**: plan Phase 0 (infrastructure)
 
 ---
 

@@ -1,7 +1,7 @@
-# Clewseau Gate config — HomesFlow
+# SpecAssay Check config — HomesFlow
 registry: "HomesFlow.prd.md"
 target_name: "HomesFlow"
-clew_path: "clew.json"
+manifest_path: "trace-manifest.json"
 specs: "specs/**/spec.md"
 tasks: "specs/**/tasks.md"
 src_globs:
@@ -10,4 +10,5 @@ test_globs:
   - "ios/**/*Tests*/**/*.swift"
 id_regex: "(FR|NFR|AC|US)-[A-Z][A-Z0-9]{1,5}-[0-9]{2,}[a-z]?"
 covers_regex: "@covers[[:space:]]+.*"
+carries_regex: "\*\*(Carries|Traces)\*\*:"
 test_ac_regex: "AC_[A-Z][A-Z0-9]{1,5}_[0-9]{2,}[a-z]?"

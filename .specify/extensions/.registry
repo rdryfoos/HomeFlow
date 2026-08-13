@@ -17,15 +17,15 @@
       ],
       "installed_at": "2026-06-26T14:27:06.775090+00:00"
     },
-    "clewseau-gate": {
+    "specassay-check": {
       "version": "0.2.0",
       "source": "local",
-      "manifest_hash": "sha256:3dc44c058e1bcfd5fb3f8d99ca3fc78ced48eb2a8dcb80a3d9fe1bb660c2fba4",
+      "manifest_hash": "sha256:899c9157055ff342d6785fc21d9cfc3e37fe753895e4413dafb51959cb5bad7f",
       "enabled": true,
       "priority": 10,
       "registered_commands": {
         "claude": [
-          "speckit.clewseau-gate.check"
+          "speckit.specassay.check"
         ]
       },
       "registered_skills": [],

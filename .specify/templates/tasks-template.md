@@ -15,7 +15,7 @@ description: "Task list template for feature implementation"
 
 ## Format: `[ID] [P?] [Story] Description`
 
-- **Traces**: Required — AC/FR ID(s) this task implements (e.g. `Traces: AC-HOME-01`)
+- **Carries**: Required — AC/FR ID(s) this task implements (e.g. `Traces: AC-HOME-01`)
 - **[P]**: Can run in parallel (different files, no dependencies)
 - **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
 - Include exact file paths in descriptions

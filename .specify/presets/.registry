@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
   "presets": {
-    "clewseau": {
+    "specassay": {
       "version": "0.1.0",
       "source": "local",
-      "manifest_hash": "sha256:b635743a9f9c48bebdfb39abf3d840e16cf38ca90c73992af49afeee012530a1",
+      "manifest_hash": "sha256:f9c169617cb1cefcb15ad9fcaec32f70f7a46f8a8258113708d83be9445dd011",
       "enabled": true,
       "priority": 10,
       "registered_commands": {},
