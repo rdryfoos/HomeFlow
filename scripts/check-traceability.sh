@@ -24,12 +24,24 @@ export LC_ALL=C
 ID_RE='(FR|NFR|AC|US)-[A-Z][A-Z0-9]{1,5}-[0-9]{2,}[a-z]?'
 PRD=HomesFlow.prd.md
 SPEC=specs/001-mvp/spec.md
-TASKS=specs/001-mvp/tasks.md
+# All tasks.md files, not just the active feature's — a registry ID can be
+# honestly tracked in specs/backlog/tasks.md (anointed backlog) instead of
+# the active spec's own file. find, not a shell glob, so a tasks.md at any
+# depth is found, matching the vendored specassay-check engine's own glob.
+TASKS_GLOB=()
+while IFS= read -r -d '' f; do TASKS_GLOB+=("$f"); done < <(find specs -name tasks.md -print0 | sort -z)
 MATRIX=specs/001-mvp/coverage.md
 SVG=specs/001-mvp/coverage.svg
 CANVAS="${GOLDEN_THREAD_CANVAS:-$HOME/.cursor/projects/Users-rik-Developer-HomesFlow/canvases/golden-thread-coverage.canvas.tsx}"
 SRC_DIRS=(ios/HomesFlow)
 TEST_DIRS=(ios/HomesFlowTests ios/HomesFlowUITests)
+# Rule 6a (specassay PROMOTION-CONTRACT.md, grafted here rather than
+# taken via full engine convergence -- see traceability.md §6 for why):
+# proven derives from a passing XCTest run, not a matching test name.
+# scripts/xcresult-to-junit.py converts the .xcresult bundle CI already
+# produces (xcodebuild has no native JUnit exporter). Missing file:
+# fall back to name-matching alone, loudly, never a silent upgrade.
+TEST_RESULTS="${TEST_RESULTS:-test-results.xml}"
 
 MODE="${1:-check}"
 
@@ -44,7 +56,7 @@ trap 'rm -rf "$tmp"' EXIT
 # ---------------------------------------------------------------------------
 grep -Eoh "$ID_RE" "$PRD"   | sort -u > "$tmp/prd.txt"
 grep -Eoh "$ID_RE" "$SPEC"  | sort -u > "$tmp/spec.txt"
-grep -Eoh "$ID_RE" "$TASKS" | sort -u > "$tmp/tasks.txt"
+grep -Eoh "$ID_RE" "${TASKS_GLOB[@]}" | sort -u > "$tmp/tasks.txt"
 
 grep -rEoh "@covers.*" "${SRC_DIRS[@]}" "${TEST_DIRS[@]}" --include='*.swift' 2>/dev/null \
   | grep -Eo "$ID_RE" | sort -u > "$tmp/covers.txt" || true
@@ -55,12 +67,51 @@ grep -rEoh 'func test_[A-Za-z0-9_]+' "${TEST_DIRS[@]}" --include='*.swift' 2>/de
 grep -Eo 'AC_[A-Z][A-Z0-9]{1,5}_[0-9]{2,}[a-z]?' "$tmp/test_names.txt" \
   | tr '_' '-' | sort -u > "$tmp/test_acs.txt" || true
 
-grep -E '^- \[ \]' "$TASKS" | grep -Eo "$ID_RE" | sort -u > "$tmp/pending.txt" || true
+# Rule 6a: a name match only shows a test *claims* to answer for an ID.
+# Cross-reference against the real JUnit results and keep only IDs with
+# at least one passing testcase, so every downstream consumer of
+# test_acs.txt (is_tested(), the silent-gap check, tested_acs's own
+# count) inherits the execution-verified meaning for free.
+execution_verified=false
+if [[ -f "$TEST_RESULTS" ]]; then
+  execution_verified=true
+  python3 - "$TEST_RESULTS" "$tmp/test_acs.txt" <<'PY'
+import sys
+import xml.etree.ElementTree as ET
+
+results_path, test_acs_path = sys.argv[1:3]
+
+tree = ET.parse(results_path)
+passing_names = []
+for testcase in tree.getroot().iter("testcase"):
+    failed = testcase.find("failure") is not None or testcase.find("error") is not None
+    skipped = testcase.find("skipped") is not None
+    if failed or skipped:
+        continue
+    passing_names.append(f'{testcase.get("classname", "")} {testcase.get("name", "")}')
+
+with open(test_acs_path) as f:
+    ids = [ln.strip() for ln in f if ln.strip()]
+
+def id_forms(id_):
+    return {id_, id_.replace("-", "_")}
+
+verified = [id_ for id_ in ids if any(any(form in label for form in id_forms(id_)) for label in passing_names)]
+
+with open(test_acs_path, "w") as f:
+    for id_ in sorted(verified):
+        f.write(id_ + "\n")
+PY
+elif [[ "$MODE" == "check" ]]; then
+  echo "WARN: $TEST_RESULTS not found; falling back to name-matching only (executionVerified=false)" >&2
+fi
+
+grep -E '^- \[ \]' "${TASKS_GLOB[@]}" | grep -Eo "$ID_RE" | sort -u > "$tmp/pending.txt" || true
 
 # status|taskId|traces — one line per task (Traces segment only)
-sed -nE 's/^- \[(x| )\] (T[0-9]+[a-z]?).*\*\*Traces\*\*: (.*)$/\1|\2|\3/p' "$TASKS" > "$tmp/task_map.txt"
+sed -nE 's/^- \[(x| )\] (T[0-9]+[a-z]?).*\*\*Traces\*\*: (.*)$/\1|\2|\3/p' "${TASKS_GLOB[@]}" > "$tmp/task_map.txt"
 # status|taskId|full line — for US story labels like [US-EDIT-01]
-sed -nE 's/^- \[(x| )\] (T[0-9]+[a-z]?)(.*)$/\1|\2|\3/p' "$TASKS" > "$tmp/task_full.txt"
+sed -nE 's/^- \[(x| )\] (T[0-9]+[a-z]?)(.*)$/\1|\2|\3/p' "${TASKS_GLOB[@]}" > "$tmp/task_full.txt"
 
 tasks_for() { # $1=id  $2=status(x or space)
   local map="$tmp/task_map.txt"
@@ -290,7 +341,7 @@ for artifact in spec tasks; do
 done
 
 # --- 2. Tasks without a Traces field ----------------------------------------
-untraced_tasks=$(grep -En '^- \[[ x]\] T[0-9]+' "$TASKS" | grep -v '\*\*Traces\*\*' || true)
+untraced_tasks=$(grep -En '^- \[[ x]\] T[0-9]+' "${TASKS_GLOB[@]}" | grep -v '\*\*Traces\*\*' || true)
 if [[ -n "$untraced_tasks" ]]; then
   err "tasks missing a Traces field:"
   echo "$untraced_tasks" | sed 's/^/  /' >&2

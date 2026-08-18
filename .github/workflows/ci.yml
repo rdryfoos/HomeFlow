@@ -13,13 +13,6 @@ jobs:
       - name: Shellcheck gate scripts
         run: shellcheck -S warning scripts/*.sh
 
-  traceability:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Gate 2 — golden thread
-        run: bash scripts/check-traceability.sh
-
   ios:
     runs-on: macos-15
     steps:
@@ -48,12 +41,31 @@ jobs:
         run: |
           cd ios
           SIM_ID=$(xcrun simctl list devices available | grep -E '^\s+iPhone' | head -1 | grep -oE '[0-9A-F-]{36}')
+          rm -rf test-results.xcresult
           xcodebuild test \
             -project HomesFlow.xcodeproj \
             -scheme HomesFlow \
             -destination "platform=iOS Simulator,id=${SIM_ID}" \
             -only-testing:HomesFlowTests \
+            -resultBundlePath test-results.xcresult \
             CODE_SIGNING_ALLOWED=NO
+      - name: Convert test results to JUnit (Rule 6a: proven derives from a passing run)
+        run: python3 scripts/xcresult-to-junit.py ios/test-results.xcresult test-results.xml
+      - uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results.xml
+
+  traceability:
+    runs-on: ubuntu-latest
+    needs: [ios]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: test-results
+      - name: Gate 2 — golden thread
+        run: bash scripts/check-traceability.sh
 
   # T089 — CI-based Sonar so sonar-project.properties multicriteria apply.
   # Requires repo secret SONAR_TOKEN (SonarCloud → My Account → Security).

@@ -1,0 +1,54 @@
+schema_version: "1.0"
+
+extension:
+  id: "specassay-check"
+  name: "SpecAssay Check"
+  version: "0.4.11"
+  description: "Gate 2 refuses silent gaps and emits a trace-manifest (`trace-manifest.json`)."
+  category: "visibility"
+  effect: "read-write"
+  author: "Rik Dryfoos"
+  license: "MIT"
+  homepage: "https://www.specassay.com"
+  repository: "https://github.com/rdryfoos/specassay"
+
+requires:
+  speckit_version: ">=0.14.0"
+  # The Gate is a shell script; the Thread Report is Python, standard library
+  # only. 3.8 is the floor we support and test against (the code itself parses
+  # on 3.7, so the constraint is deliberately conservative).
+  tools:
+    - name: "bash"
+      required: true
+    - name: "python3"
+      version: ">=3.8"
+      required: true
+
+provides:
+  commands:
+    - name: "speckit.specassay-check.gate"
+      file: "commands/speckit.specassay-check.gate.md"
+      description: "Run SpecAssay Check / Gate 2 (silent gaps fail; write trace-manifest.json)"
+    - name: "speckit.specassay-check.mint"
+      file: "commands/speckit.specassay-check.mint.md"
+      description: "Mint the next durable ID for a prefix and area, or resolve a duplicate-id refusal"
+
+  config:
+    - name: "specassay-check-config.yml"
+      template: "config-template.yml"
+      description: "Registry path, source/test globs, and ID grammar"
+      required: true
+
+hooks:
+  after_implement:
+    command: "speckit.specassay-check.gate"
+    optional: true
+    prompt: "Run SpecAssay Check (Gate 2 traceability)?"
+    description: "Refuse silent gaps after implementation; refresh trace-manifest.json"
+
+tags:
+  - "traceability"
+  - "gate"
+  - "ci"
+  - "governance"
+  - "sdd"

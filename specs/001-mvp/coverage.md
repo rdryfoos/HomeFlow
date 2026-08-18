@@ -8,11 +8,11 @@ Source of truth: `HomesFlow.prd.md` registry × `tasks.md` × `@covers` annotati
 
 | Metric | Count |
 |--------|-------|
-| Registry IDs | 79 |
-| Acceptance criteria | 50 |
+| Registry IDs | 82 |
+| Acceptance criteria | 51 |
 | ACs verified (test passing in suite) | 45 |
 | ACs implemented — test pending | 4 |
-| ACs planned (tracked, not implemented) | 1 |
+| ACs planned (tracked, not implemented) | 2 |
 
 ## Acceptance criteria
 
@@ -21,6 +21,7 @@ Source of truth: `HomesFlow.prd.md` registry × `tasks.md` × `@covers` annotati
 | AC-A11Y-01 | Verified | T066a | T069a | `test_AC_A11Y_01_hero_height_grows_with_text_size`<br>`test_AC_A11Y_01_scale_factor_is_monotonic_across_sizes` |
 | AC-A11Y-02 | Verified | T021b T066a | T069a | `test_AC_A11Y_02_every_section_tab_has_meaningful_voiceover_text`<br>`test_AC_A11Y_02_step_status_values_cover_all_statuses` |
 | AC-A11Y-03 | Verified | T066a | T069a | `test_AC_A11Y_03_reduce_motion_disables_animation` |
+| AC-CLEW-01 | Planned | — | T900 | — |
 | AC-GUEST-01 | Verified | T057 T062 T065 | T064 | `test_AC_GUEST_01_guest_fields_only` |
 | AC-GUEST-02 | Verified | T005 T010 T058 T063a | — | `test_AC_GUEST_02_restricted_deep_link_denied` |
 | AC-GUEST-03 | Verified | T059 T063b | — | `test_AC_GUEST_03_offline_visibility_sync` |
@@ -58,9 +59,9 @@ Source of truth: `HomesFlow.prd.md` registry × `tasks.md` × `@covers` annotati
 | AC-SYNC-02 | Implemented — test pending | T011 T072 | T035 T039 | — |
 | AC-SYNC-03 | Verified | T011 T036 T040 T072 | — | `test_AC_SYNC_03_permission_denied_revert_matrix` |
 | AC-SYNC-04 | Verified | T015 T037 T040a | — | `test_AC_SYNC_04_pending_state_announced_to_voiceover`<br>`test_AC_SYNC_04_pending_sync_visible_on_dashboard` |
-| AC-SYNC-05 | Verified | T074 T074a | — | `test_AC_SYNC_05_terminal_status_never_silently_regressed` |
+| AC-SYNC-05 | Verified | T074 T074a | — | `test_AC_SYNC_05_terminal_status_never_silently_regressed`<br>`test_AC_SYNC_05_terminal_step_protection_matrix` |
 | AC-SYNC-06 | Verified | T075 T075a | — | `test_AC_SYNC_06_losing_user_notified_with_reapply_guidance` |
-| AC-SYNC-07 | Verified | T076 T076a | — | `test_AC_SYNC_07_structural_actions_blocked_offline` |
+| AC-SYNC-07 | Verified | T076 T076a | — | `test_AC_SYNC_07_structural_actions_blocked_offline`<br>`test_AC_SYNC_07_structural_offline_gate_matrix` |
 | AC-USER-01 | Verified | T025 T026 T030 | — | `test_AC_USER_01_invite_accepted_grants_role`<br>`test_AC_USER_01_invite_email_validation_and_token_shape` |
 | AC-USER-02 | Verified | T025 T031 | — | `test_AC_USER_02_revoked_token_invalid` |
 | AC-USER-03 | Planned | — | T027 T033a | — |
@@ -74,6 +75,7 @@ Source of truth: `HomesFlow.prd.md` registry × `tasks.md` × `@covers` annotati
 | ID | Status | Done tasks | Pending tasks |
 |----|--------|------------|---------------|
 | FR-AUTH-01 | In progress | T006 T008 T013 T014 T067 | T017 |
+| FR-CLEW-01 | Planned | — | T900 |
 | FR-GUEST-01 | In progress | T005 T057 | T071 |
 | FR-GUEST-02 | Implemented | T025 | — |
 | FR-HOME-01 | Implemented | T004 T007 T015 T018 T019 T019a T021 | — |
@@ -98,7 +100,7 @@ Source of truth: `HomesFlow.prd.md` registry × `tasks.md` × `@covers` annotati
 | NFR-PERF-01 | In progress | T016 T019a T047 T065e | T072a |
 | NFR-REL-01 | Planned | — | T072c |
 | NFR-SCALE-01 | Planned | — | T072b |
-| NFR-SEC-01 | Implemented | T003 T008 | — |
+| NFR-SEC-01 | In progress | T003 T008 | T087 |
 | NFR-SYNC-01 | In progress | T072 | T072a |
 
 ## User stories
@@ -108,6 +110,7 @@ Source of truth: `HomesFlow.prd.md` registry × `tasks.md` × `@covers` annotati
 | US-ADMIN-01 | In progress | T014 T015 T016 T018 T019 T019a T020 T021 T021a T021b T021c T023 T024 T024a T024b T024c | T017 T022 T024d T024e T024f |
 | US-ADMIN-02 | In progress | T025 T026 T030 T031 T033c | T027 T033a |
 | US-ADMIN-03 | Tasks done — no @covers | T028 T029 T032 T033 T033b | — |
+| US-CLEW-01 | Planned | — | T900 |
 | US-EDIT-01 | Tasks done — no @covers | T041 T042 T043 T044 T045 T046 T047 T047a T047b T047c T047d T048 T049 T050 T050a T050b T050c T050d | — |
 | US-EDIT-02 | Tasks done — no @covers | T051 T052 T053 T054 T055 T056 | — |
 | US-GUEST-01 | In progress | T057 T058 T059 T062 T063a T063b | T064 |
