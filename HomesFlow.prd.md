@@ -44,7 +44,7 @@ HomesFlow is a responsive iOS app (iPhone and iPad) that empowers primary homeow
 
 **Clewseau cold-agent trial (temporary probe — tombstone after trial)**
 
-* **US-CLEW-01** — As a developer validating Clewseau, I want a tiny pure display-name normalizer with durable IDs, so a stock Spec Kit + Clewseau agent can take one AC from registry through proof without UI or sync scope.
+* **US-CLEW-01** — As a developer validating Clewseau, I want a tiny pure display-name normalizer with durable IDs, so a stock Spec Kit + Clewseau agent can take one AC from registry through proof without UI or sync scope. [TOMBSTONED 2026-08-18: cold-agent probe concluded; tooling archived at tag clew-era-final; retirement carried by T900, pending the retired state.]
 
 ---
 
@@ -65,7 +65,7 @@ HomesFlow is a responsive iOS app (iPhone and iPad) that empowers primary homeow
 * **FR-NOTIF-01** (Priority: Medium) — Optional push notifications for changed statuses and new assignments.
 * **FR-LOG-01** (Priority: Medium) — History log of changes for accountability.
 * **FR-LOG-02** (Priority: Medium) — User-authored **Log Book**: Owners and Managers write free-form log entries at household scope or attached to a procedure, viewable in a unified chronological log alongside activity history. Entries are append-only offline, editable only within a 10-minute grace window that starts at server receipt. Guests have no Log Book access.
-* **FR-CLEW-01** (Priority: Low) — **Clewseau trial.** Pure helper `HomeDisplayName.normalized(_:)` collapses whitespace in home display names (no UI, no sync). Temporary probe ID — tombstone after the cold-agent trial.
+* **FR-CLEW-01** (Priority: Low) — **Clewseau trial.** Pure helper `HomeDisplayName.normalized(_:)` collapses whitespace in home display names (no UI, no sync). Temporary probe ID — tombstone after the cold-agent trial. [TOMBSTONED 2026-08-18: cold-agent probe concluded; tooling archived at tag clew-era-final; retirement carried by T900, pending the retired state.]
 
 ---
 
@@ -295,7 +295,7 @@ Imagine Diane, a homeowner who spends most of her time in Florida, but owns a ch
 
 > Temporary probe for stock Spec Kit + Clewseau cold-agent validation. Implement as a pure Swift helper + unit test only. Tombstone these IDs after the trial; do not reuse numbers.
 
-* **AC-CLEW-01** — Given a home display name string, when `HomeDisplayName.normalized(_:)` runs, then leading and trailing whitespace are stripped and any internal run of whitespace collapses to a single space.
+* **AC-CLEW-01** — Given a home display name string, when `HomeDisplayName.normalized(_:)` runs, then leading and trailing whitespace are stripped and any internal run of whitespace collapses to a single space. [TOMBSTONED 2026-08-18: cold-agent probe concluded; tooling archived at tag clew-era-final; retirement carried by T900, pending the retired state.]
 
 ---
 
