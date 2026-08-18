@@ -23,11 +23,15 @@ export LC_ALL=C
 # Domain segment allows digits (e.g. A11Y) but must start with a letter.
 ID_RE='(FR|NFR|AC|US)-[A-Z][A-Z0-9]{1,5}-[0-9]{2,}[a-z]?'
 PRD=HomesFlow.prd.md
-SPEC=specs/001-mvp/spec.md
-# All tasks.md files, not just the active feature's — a registry ID can be
-# honestly tracked in specs/backlog/tasks.md (anointed backlog) instead of
-# the active spec's own file. find, not a shell glob, so a tasks.md at any
-# depth is found, matching the vendored specassay-check engine's own glob.
+# All spec.md and tasks.md files, not just the active feature's — a registry
+# ID can be honestly anchored in specs/backlog/spec.md (retirement-carried or
+# anointed-but-unbuilt intent) instead of the active feature's own spec. find,
+# not a shell glob, so a file at any depth is found, deterministic order via
+# sort, matching the vendored specassay-check engine's own recursive glob.
+# Third hardcoded-single-path instance fixed this way (TASKS was the first);
+# the class is retired, not just this occurrence.
+SPEC_GLOB=()
+while IFS= read -r -d '' f; do SPEC_GLOB+=("$f"); done < <(find specs -name spec.md -print0 | sort -z)
 TASKS_GLOB=()
 while IFS= read -r -d '' f; do TASKS_GLOB+=("$f"); done < <(find specs -name tasks.md -print0 | sort -z)
 MATRIX=specs/001-mvp/coverage.md
@@ -55,7 +59,7 @@ trap 'rm -rf "$tmp"' EXIT
 # Extraction (shared by all modes)
 # ---------------------------------------------------------------------------
 grep -Eoh "$ID_RE" "$PRD"   | sort -u > "$tmp/prd.txt"
-grep -Eoh "$ID_RE" "$SPEC"  | sort -u > "$tmp/spec.txt"
+grep -Eoh "$ID_RE" "${SPEC_GLOB[@]}" | sort -u > "$tmp/spec.txt"
 grep -Eoh "$ID_RE" "${TASKS_GLOB[@]}" | sort -u > "$tmp/tasks.txt"
 
 grep -rEoh "@covers.*" "${SRC_DIRS[@]}" "${TEST_DIRS[@]}" --include='*.swift' 2>/dev/null \
