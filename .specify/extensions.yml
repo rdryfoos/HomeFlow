@@ -1,6 +1,5 @@
 installed:
 - agent-context
-- clewseau-gate
 settings:
   auto_execute_hooks: true
 hooks:
@@ -21,13 +20,4 @@ hooks:
     priority: 10
     prompt: Execute speckit.agent-context.update?
     description: Refresh agent context after planning
-    condition: null
-  after_implement:
-  - extension: clewseau-gate
-    command: speckit.clewseau-gate.check
-    enabled: true
-    optional: true
-    priority: 10
-    prompt: Run Clewseau Gate 2 traceability check?
-    description: Refuse silent gaps after implementation; refresh clew.json
     condition: null

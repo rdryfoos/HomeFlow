@@ -21,7 +21,7 @@
       "version": "0.2.0",
       "source": "local",
       "manifest_hash": "sha256:3dc44c058e1bcfd5fb3f8d99ca3fc78ced48eb2a8dcb80a3d9fe1bb660c2fba4",
-      "enabled": true,
+      "enabled": false,
       "priority": 10,
       "registered_commands": {
         "claude": [
@@ -29,7 +29,9 @@
         ]
       },
       "registered_skills": [],
-      "installed_at": "2026-08-06T18:45:20.408692+00:00"
+      "installed_at": "2026-08-06T18:45:20.408692+00:00",
+      "archived_at": "2026-08-18T00:00:00+00:00",
+      "archive_note": "Pre-rename gate tooling; recoverable at tag clew-era-final; lineage recorded in the provenance repo."
     }
   }
 }

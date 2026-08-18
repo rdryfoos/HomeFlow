@@ -55,6 +55,9 @@ Traceability terms from the Clewseau Spec Kit overlay (also in constitution Arti
 | **backlog** | US/FR/NFR with no own carrier — planning altitude, not a silent gap. |
 | **Gate 2** | Deterministic Clewseau check + clew emit (`speckit.clewseau-gate.check`). |
 
+Pre-rename gate tooling (clewseau-gate v0.2.0, clew.json) archived 2026-08-18;
+recoverable at tag `clew-era-final`; lineage recorded in the provenance repo.
+
 SDLC worked examples (AC-HOME-09 / AC-HOME-10 and peers): Clewseau repo `docs/reading-a-clew.md`.
 
 ## MVP exclusions
