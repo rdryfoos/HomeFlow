@@ -91,7 +91,7 @@ jobs:
           fi
       - name: SonarCloud Scan
         if: steps.creds.outputs.present == 'true'
-        uses: SonarSource/sonarqube-scan-action@v5
+        uses: sonarsource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
