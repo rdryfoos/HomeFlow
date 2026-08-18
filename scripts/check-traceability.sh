@@ -364,7 +364,7 @@ fi
 while IFS= read -r ac; do
   if grep -qx "$ac" "$tmp/test_acs.txt"; then continue; fi   # tested
   if grep -qx "$ac" "$tmp/pending.txt"; then continue; fi    # tracked debt
-  err "gap: $ac has no test and no pending task in $TASKS"
+  err "gap: $ac has no test and no pending task in any tasks.md"
 done < <(grep '^AC-' "$tmp/prd.txt")
 
 # --- Summary -----------------------------------------------------------------

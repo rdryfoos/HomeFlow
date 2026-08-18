@@ -53,7 +53,7 @@ Traceability terms from the Clewseau Spec Kit overlay (also in constitution Arti
 | **tracked-debt** | Incomplete, but declared on an open task with `Traces:`. |
 | **GAP** | Silent AC gap — neither proof nor open debt; Gate refuses; thread frays. |
 | **backlog** | US/FR/NFR with no own carrier — planning altitude, not a silent gap. |
-| **Gate 2** | Deterministic Clewseau check + clew emit (`speckit.clewseau-gate.check`). |
+| **Gate 2** | Deterministic Clewseau check + clew emit (`speckit.assay.check`; formerly `speckit.clewseau-gate.check`, pre-rename era; archived at `clew-era-final`). |
 
 Pre-rename gate tooling (clewseau-gate v0.2.0, clew.json) archived 2026-08-18;
 recoverable at tag `clew-era-final`; lineage recorded in the provenance repo.
